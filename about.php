@@ -18,7 +18,7 @@
 <body class="font-['Roboto']">
 
     <!-- Navbar starts here -->
-     <?php include('includes/header.inc.php'); ?>
+     <?php include('includes/header.php'); ?>
     <!-- navbar ends here -->
 
 
@@ -72,7 +72,7 @@
     <!-- about section ends here -->
 
     <!-- footer section starts here  -->
-    <?php include('includes/footer.inc.php'); ?>
+    <?php include('includes/footer.php'); ?>
     <!-- footer section ends here  -->
 
 

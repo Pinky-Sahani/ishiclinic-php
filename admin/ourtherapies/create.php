@@ -1,30 +1,10 @@
 <?php
 require_once('../../connect.php');
+require_once('../controllers/insert.php');
 
-if (isset($_POST['savetherapy'])) {
-
-    // Form data
-    $title = $_POST['title'];
-    $description = $_POST['description'];
-    $status = $_POST['status'];
-
-    // Image upload
-    $imageName = $_FILES['image']['name'];
-    $tmpName = $_FILES['image']['tmp_name'];
-
-    move_uploaded_file($tmpName, "uploads/" . $imageName);
-
-    // Insert data
-    $sql = "INSERT INTO therapies (title, description, image, status)
-            VALUES (:title, :description, :image, :status)";
-
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':title', $title);
-    $stmt->bindParam(':description', $description);
-    $stmt->bindParam(':image', $imageName);
-    $stmt->bindParam(':status', $status);
-    $stmt->execute();
-
+// Call function
+$isInsert = insertTherapy($conn);
+if ($isInsert) {
     header("Location: index.php");
     exit;
 }

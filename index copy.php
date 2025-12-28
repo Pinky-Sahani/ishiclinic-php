@@ -1,9 +1,4 @@
 <?php
-require_once('connect.php');
-require_once('admin/controllers/fetch.php');
-
-$sliders = fetchSliders($conn);
-$therapies = fetchTherapies($conn);
 
 ?>
 <!-- Navbar starts here -->
@@ -12,57 +7,150 @@ $therapies = fetchTherapies($conn);
 
 <!-- Hero section starts here or slider section-->
 <section class="relative w-full h-[600px] overflow-hidden" id="heroCarousel">
-    <?php foreach ($sliders as $key => $slide): ?>
-        <div class="carousel-slide absolute inset-0 transition-all duration-700 ease-in-out 
-        <?= $key == 0 ? '' : 'opacity-0' ?>" style="background-image: url('admin/sliders/uploads/<?= $slide['image']; ?>');
-               background-size: cover; background-position: center;">
 
-            <div class="absolute inset-0 bg-black/40"></div>
+    <!-- SLIDE 1 -->
+    <div class="carousel-slide absolute inset-0 transition-all duration-700 ease-in-out"
+        style="background-image: url('assest/images/hero.jpg'); background-size: cover; background-position: center;">
 
-            <div class="relative container px-6 text-white 
-            flex items-center justify-center h-full text-center">
+        <div class="absolute inset-0 bg-black/40"></div>
 
-                <div class="max-w-3xl">
-                    <h1 class="text-3xl font-bold">
-                        <?= $slide['title']; ?>
-                    </h1>
+        <div class="relative container px-6 md:px-12 lg:px-20 text-white 
+             flex items-center justify-center h-full text-center">
 
-                    <p class="mt-3 text-xl">
-                        <?= $slide['subtitle']; ?>
-                    </p>
+            <div class="w-full max-w-3xl">
 
-                    <p class="mt-2">
-                        <?= $slide['description_text']; ?>
-                    </p>
+                <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
+                    Advance Homoeo & <br> Naturopathic Healing
+                </h1>
 
-                    <div class="flex justify-center gap-4 mt-6">
-                        <a href="#" class="bg-purple-400 px-6 py-3 rounded-full">
-                            Book Appointment
-                        </a>
-                        <a href="#" class="bg-purple-400 px-6 py-3 rounded-full">
-                            Learn More
-                        </a>
-                    </div>
+                <p class="mt-4 text-lg sm:text-xl font-medium">
+                    संपूर्ण और सुरक्षित उपचार — जटिल एवं असाध्य रोगों का सफल समाधान
+                </p>
+
+                <p class="mt-2 text-lg sm:text-xl">
+                    Personalized natural therapies for long-term wellness.
+                </p>
+
+                <!-- Buttons -->
+                <div class=" flex justify-center gap-4 mt-6 flex-wrap">
+                    <a href="#"
+                        class="bg-purple-400 text-white md:px-6 px-14 py-3 rounded-full font-semibold shadow-lg whitespace-nowrap">
+                        Book Appointment
+                    </a>
+
+                    <a href="#"
+                        class="bg-purple-400 hover:bg-gray-500 md:px-12 px-20 py-3 rounded-full font-semibold shadow-lg whitespace-nowrap">
+                        Learn More
+                    </a>
                 </div>
+
             </div>
         </div>
-    <?php endforeach; ?>
+    </div>
 
-    <!-- Arrows -->
-    <button id="prevSlide" class="absolute left-6 top-1/2 text-white text-4xl">&#10094;</button>
-    <button id="nextSlide" class="absolute right-6 top-1/2 text-white text-4xl">&#10095;</button>
 
-    <!-- Dots -->
-    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
-        <?php foreach ($sliders as $key => $slide): ?>
-            <span class="carousel-dot w-10 h-1 rounded-full 
-        <?= $key == 0 ? 'bg-white/70' : 'bg-white/40'; ?>">
-            </span>
-        <?php endforeach; ?>
+    <!-- SLIDE 2 -->
+    <div class="carousel-slide absolute inset-0 opacity-0 transition-all duration-700 ease-in-out"
+        style="background-image: url('assest/images/hero2.jpg'); background-size: cover; background-position: center;">
+
+        <div class="absolute inset-0 bg-black/40"></div>
+
+        <div class="relative container px-6 md:px-12 lg:px-20 text-white 
+             flex items-center justify-center h-full text-center">
+
+            <div class="w-full max-w-3xl">
+
+                <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
+                    Advance Homoeo & <br> Naturopathic Healing
+                </h1>
+
+                <p class="mt-4 text-lg sm:text-xl font-medium">
+                    संपूर्ण और सुरक्षित उपचार — जटिल एवं असाध्य रोगों का सफल समाधान
+                </p>
+
+                <p class="mt-2 text-lg sm:text-xl">
+                    Personalized natural therapies for long-term wellness.
+                </p>
+
+                <!-- Buttons -->
+                <div class="flex justify-center gap-4 mt-6 flex-wrap">
+                    <a href="#"
+                        class="bg-purple-400 text-white md:px-6 px-14 py-3 rounded-full font-semibold shadow-lg whitespace-nowrap">
+                        Book Appointment
+                    </a>
+
+                    <a href="#"
+                        class="bg-purple-400 hover:bg-gray-500 md:px-12  px-20 py-3 rounded-full font-semibold shadow-lg whitespace-nowrap">
+                        Learn More
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- SLIDE 3 -->
+    <div class="carousel-slide absolute inset-0 opacity-0 transition-all duration-700 ease-in-out"
+        style="background-image: url('assest/images/hero3.png'); background-size: cover; background-position: center;">
+
+        <div class="absolute inset-0 bg-black/40"></div>
+
+        <div class="relative container px-6 md:px-12 lg:px-20 text-white 
+             flex items-center justify-center h-full text-center">
+
+            <div class="w-full max-w-3xl">
+
+
+                <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
+                    Advance Homoeo & <br> Naturopathic Healing
+                </h1>
+
+                <p class="mt-4 text-lg sm:text-xl font-medium">
+                    संपूर्ण और सुरक्षित उपचार — जटिल एवं असाध्य रोगों का सफल समाधान
+                </p>
+
+                <p class="mt-2 text-lg sm:text-xl">
+                    Personalized natural therapies for long-term wellness.
+                </p>
+
+                <!-- Buttons -->
+                <div class="flex justify-center gap-4 mt-6 flex-wrap">
+                    <a href="#"
+                        class="bg-purple-400 text-white md:px-6 px-14 py-3 rounded-full font-semibold shadow-lg whitespace-nowrap">
+                        Book Appointment
+                    </a>
+
+                    <a href="#"
+                        class="bg-purple-400 hover:bg-gray-500 md:px-12 px-20 py-3 rounded-full font-semibold shadow-lg whitespace-nowrap">
+                        Learn More
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- LEFT ARROW -->
+    <button id="prevSlide" class="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 text-white text-4xl z-10">
+        &#10094;
+    </button>
+
+    <!-- RIGHT ARROW -->
+    <button id="nextSlide" class="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 text-white text-4xl z-10">
+        &#10095;
+    </button>
+
+
+    <!-- DOTS -->
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-3 z-10">
+        <span class="carousel-dot w-10 h-1 bg-white/70 rounded-full"></span>
+        <span class="carousel-dot w-10 h-1 bg-white/40 rounded-full"></span>
+        <span class="carousel-dot w-10 h-1 bg-white/40 rounded-full"></span>
     </div>
 
 </section>
-
 <!-- Hero section ends here -->
 
 <!-- about section starts here -->
@@ -116,50 +204,102 @@ $therapies = fetchTherapies($conn);
 
 
 <!-- our therapy section starts here -->
-<section class="bg-white">
+<section class=" bg-white">
     <div class="container mx-auto px-6">
 
         <!-- Section Title -->
-        <h2 class="text-4xl font-semibold text-center mb-10 text-[#7b61ff]">
+        <h2 class="text-4xl  font-semibold text-center mb-10  text-[#7b61ff]">
             Our Therapies
         </h2>
 
         <!-- Cards Wrapper -->
         <div class="grid md:grid-cols-3 gap-8">
 
-            <?php if (!empty($therapies)) : ?>
-                <?php foreach ($therapies as $therapy) : ?>
+            <!-- Card 1 -->
+            <div class="bg-white rounded-2xl shadow-md hover:shadow-lg transition p-6">
+                <img src="assest/images/therapy-joint.jpg" alt="Joint Pain"
+                    class="rounded-xl mb-6 w-full h-56 object-cover">
 
-                    <div class="bg-white rounded-2xl shadow-md hover:shadow-lg transition p-6">
+                <div class="text-center">
+                    <div class="text-teal-600 text-3xl mb-2">💚</div>
+                    <h3 class="text-xl font-semibold mb-2 text-[#7b61ff]">Joint Pain & Arthritis</h3>
+                    <p class="text-gray-600">
+                        Holistic treatment for arthritis, stiffness and chronic joint disorders.
+                    </p>
+                </div>
+            </div>
 
-                        <img src="admin/ourtherapies/uploads/<?= $therapy['image']; ?>"
-                             alt="<?= $therapy['title']; ?>"
-                             class="rounded-xl mb-6 w-full h-56 object-cover">
+            <!-- Card 2 -->
+            <div class="bg-white rounded-2xl shadow-md hover:shadow-lg transition p-6">
+                <img src="assest/images/therapy-skin.jpg" alt="Skin Diseases"
+                    class="rounded-xl mb-6 w-full h-56 object-cover">
 
-                        <div class="text-center">
-                            <div class="text-teal-600 text-3xl mb-2">💚</div>
+                <div class="text-center">
+                    <div class="text-teal-600 text-3xl mb-2">✨</div>
+                    <h3 class="text-xl font-semibold mb-2 text-[#7b61ff]">Skin Diseases</h3>
+                    <p class="text-gray-600">
+                        Safe, natural healing for eczema, psoriasis, acne & allergies.
+                    </p>
+                </div>
+            </div>
 
-                            <h3 class="text-xl font-semibold mb-2 text-[#7b61ff]">
-                                <?= $therapy['title']; ?>
-                            </h3>
+            <!-- Card 3 -->
+            <div class="bg-white rounded-2xl shadow-md hover:shadow-lg transition p-6">
+                <img src="assest/images/therapy-women.jpg" alt="Women's Health"
+                    class="rounded-xl mb-6 w-full h-56 object-cover">
 
-                            <p class="text-gray-600">
-                                <?= $therapy['description']; ?>
-                            </p>
-                        </div>
-                    </div>
+                <div class="text-center">
+                    <div class="text-teal-600 text-3xl mb-2">👩‍⚕️</div>
+                    <h3 class="text-xl font-semibold mb-2 text-[#7b61ff]">Women’s Health</h3>
+                    <p class="text-gray-600">
+                        Expert care for PCOD, thyroid, hormonal imbalance & gynecology issues.
+                    </p>
+                </div>
+            </div>
+            <!-- card 4 -->
+            <div class="bg-white rounded-2xl shadow-md hover:shadow-lg transition p-6">
+                <img src="assest/images/therapy-child.jpg" alt="Women's Health"
+                    class="rounded-xl mb-6 w-full h-56 object-cover">
 
-                <?php endforeach; ?>
-            <?php else : ?>
-                <p class="col-span-3 text-center text-gray-500">
-                    No therapies found.
-                </p>
-            <?php endif; ?>
+                <div class="text-center">
+                    <div class="text-teal-600 text-3xl mb-2">👩‍⚕️</div>
+                    <h3 class="text-xl font-semibold mb-2 text-[#7b61ff]">Pediatric Care</h3>
+                    <p class="text-gray-600">
+                        Gentle, effective natural care for kids with allergies & immunity issues.
+                    </p>
+                </div>
+
+            </div>
+            <!-- card 5  -->
+            <div class="bg-white rounded-2xl shadow-md hover:shadow-lg transition p-6">
+                <img src="assest/images/therapy-stress.jpg" alt="Women's Health"
+                    class="rounded-xl mb-6 w-full h-56 object-cover">
+
+                <div class="text-center">
+                    <div class="text-teal-600 text-3xl mb-2">👩‍⚕️</div>
+                    <h3 class="text-xl font-semibold mb-2 text-[#7b61ff]">Lifestyle & Stress</h3>
+                    <p class="text-gray-600">
+                        Mind-body healing for stress, anxiety and sleep issues.
+                    </p>
+                </div>
+            </div>
+            <!-- card 6  -->
+            <div class="bg-white rounded-2xl shadow-md hover:shadow-lg transition p-6">
+                <img src="assest/images/therapy-online.jpg" alt="Women's Health"
+                    class="rounded-xl mb-6 w-full h-56 object-cover">
+
+                <div class="text-center">
+                    <div class="text-teal-600 text-3xl mb-2">👩‍⚕️</div>
+                    <h3 class="text-xl font-semibold mb-2 text-[#7b61ff]">Online Consultation</h3>
+                    <p class="text-gray-600">
+                        Expert online guidance with digital prescriptions & follow-ups.
+                    </p>
+                </div>
+            </div>
 
         </div>
     </div>
 </section>
-
 <!-- our therapy section ends here -->
 
 

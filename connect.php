@@ -1,15 +1,23 @@
 <?php
-$servername = "localhost"; 
-$username   = "root";     
-$password   = "";          
-$dbname     = "ishi_clinic"; 
+$servername = "localhost";
+$username   = "root";
+$password   = "";
+$dbname     = "ishi_clinic";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);   
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+try {
+    // Create PDO connection
+    $conn = new PDO(
+        "mysql:host=$servername;dbname=$dbname",
+        $username,
+        $password
+    );
+
+    // Set error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // echo "Database connected successfully!";
+} catch (PDOException $e) {
+    // If connection fails
+    die("Connection failed: " . $e->getMessage());
 }
-
-echo "Database connected successfully!";
 ?>

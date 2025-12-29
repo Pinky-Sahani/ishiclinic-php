@@ -21,15 +21,20 @@ $therapies = fetchTherapies($conn);
     <div class="max-w-7xl mx-auto bg-white rounded-xl shadow p-6">
 
         <!-- Header -->
-        <div class="flex justify-between items-center mb-6">
-            <h1 class="text-3xl font-semibold text-[#7b61ff]">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
+        
+            <h1
+                class=" text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-[#7b61ff] text-center sm:text-left">
                 Therapies Management
             </h1>
 
-            <a href="create.php" class="bg-[#7b61ff] text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition">
+            <a href="create.php"
+                class=" bg-[#7b61ff]  text-white text-sm sm:text-base  px-3 sm:px-4  py-2 rounded-lg hover:bg-purple-700 transition text-center">
                 + Add Therapy
             </a>
+
         </div>
+
 
         <!-- Table -->
         <div class="overflow-x-auto">
@@ -50,20 +55,21 @@ $therapies = fetchTherapies($conn);
                         <tr>
                             <td class="p-4 border text-center"><?= $index + 1; ?></td>
                             <td class="p-4 border text-center">
-                                <img src="uploads/<?= $row['image']; ?>" class="h-[70px]"></td>
+                                <img src="../uploads/therapies/<?= $row['image']; ?>" class="h-[70px]">
+                            </td>
                             <td class="p-4 border text-center"><?= $row['title']; ?></td>
                             <td class="p-4 border text-center"><?= $row['description']; ?></td>
                             <td class="p-4 border text-center">
                                 <?= ($row['status'] = 1) ? 'Active' : 'Inactive'; ?>
                             </td>
                         </tr>
-                    <?php endforeach; ?>    
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
 
     </div>
- <?php include('../adminfooter.php'); ?>
+    <?php include('../adminfooter.php'); ?>
 </body>
 
 </html>

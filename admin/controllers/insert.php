@@ -17,7 +17,7 @@ function insertSlider($conn)
         $imageName = $_FILES['image']['name'];
         $tmpName = $_FILES['image']['tmp_name'];
 
-        move_uploaded_file($tmpName, "uploads/" . $imageName);
+        move_uploaded_file($tmpName, "../uploads/sliders/" . $imageName);
 
         $sql = "INSERT INTO sliders (title, subtitle, description_text, image, status)
             VALUES (:title, :subtitle, :description, :image, :status)";
@@ -56,7 +56,7 @@ function insertTherapy($conn)
         $tmpName = $_FILES['image']['tmp_name'];
 
 
-        move_uploaded_file($tmpName, "uploads/" . $imageName);
+        move_uploaded_file($tmpName, "../uploads/therapies/" . $imageName);
 
         // Insert query
         $sql = "INSERT INTO therapies (title, description, image, status)

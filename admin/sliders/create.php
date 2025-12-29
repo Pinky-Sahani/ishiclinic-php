@@ -3,7 +3,6 @@ require_once('../../connect.php');
 require_once('../controllers/insert.php');
 
 $isInsert = insertSlider($conn);
-
 if ($isInsert) {
     header("Location: index.php");
     exit;
@@ -43,7 +42,7 @@ if ($isInsert) {
                 <option value="0">Inactive</option>
             </select>
 
-            <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">
+            <button type="submit" name="saveslider" class="bg-green-600 text-white px-4 py-2 rounded">
                 Save Slider
             </button>
 

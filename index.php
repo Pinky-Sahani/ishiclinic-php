@@ -1,7 +1,6 @@
 <?php
 require_once('connect.php');
 require_once('admin/controllers/fetch.php');
-
 $sliders = fetchSliders($conn);
 $therapies = fetchTherapies($conn);
 
@@ -14,7 +13,7 @@ $therapies = fetchTherapies($conn);
 <section class="relative w-full h-[600px] overflow-hidden" id="heroCarousel">
     <?php foreach ($sliders as $key => $slide): ?>
         <div class="carousel-slide absolute inset-0 transition-all duration-700 ease-in-out 
-        <?= $key == 0 ? '' : 'opacity-0' ?>" style="background-image: url('admin/sliders/uploads/<?= $slide['image']; ?>');
+        <?= $key == 0 ? '' : 'opacity-0' ?>" style="background-image: url('admin/uploads/sliders/<?= $slide['image']; ?>');
                background-size: cover; background-position: center;">
 
             <div class="absolute inset-0 bg-black/40"></div>
@@ -132,7 +131,7 @@ $therapies = fetchTherapies($conn);
 
                     <div class="bg-white rounded-2xl shadow-md hover:shadow-lg transition p-6">
 
-                        <img src="admin/ourtherapies/uploads/<?= $therapy['image']; ?>"
+                        <img src="admin/uploads/therapies/<?= $therapy['image']; ?>"
                              alt="<?= $therapy['title']; ?>"
                              class="rounded-xl mb-6 w-full h-56 object-cover">
 

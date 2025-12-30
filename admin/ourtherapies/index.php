@@ -60,7 +60,23 @@ $therapies = fetchTherapies($conn);
                             <td class="p-4 border text-center"><?= $row['title']; ?></td>
                             <td class="p-4 border text-center"><?= $row['description']; ?></td>
                             <td class="p-4 border text-center">
-                                <?= ($row['status'] = 1) ? 'Active' : 'Inactive'; ?>
+                                <?= ($row['status'] == 1) ? 'Active' : 'Inactive'; ?>
+                            </td>
+                             <td class="py-3 px-4 border-b">
+                                <div class="flex flex-col sm:flex-row sm:justify-end gap-2">
+
+                                    <a href="update_therapy.php?id=<?= $row['id'] ?>"
+                                        class="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 rounded text-center transition">
+                                        Edit
+                                    </a>
+
+                                    <a href="delete_therapy.php?id=<?= $row['id'] ?>"
+                                        onclick="return confirm('Are you sure you want to delete this?');"
+                                        class="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 rounded text-center transition">
+                                        Delete
+                                    </a>
+
+                                </div>
                             </td>
                         </tr>
                     <?php endforeach; ?>

@@ -1,14 +1,14 @@
 <?php
 require_once('../../connect.php');
+require_once('../controllers/delete.php');
 
-$id = $_GET['id'];
-
-if (!isset($id)) {
-    die("ID is missing");
+// Check ID
+if (!isset($_GET['id'])) {
+    die("Therapy ID is missing");
 }
-$sql = "DELETE FROM therapies WHERE id = :id";
-$stmt = $conn->prepare($sql);
-$stmt->bindParam(':id', $id);
-$stmt->execute();
-header("Location: index.php");
+
+$id = (int) $_GET['id'];
+
+// Call delete function
+deleteTherapy($conn, $id);
 ?>

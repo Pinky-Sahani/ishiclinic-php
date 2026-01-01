@@ -1,7 +1,6 @@
 <?php
 require_once('../../connect.php');
 include('../adminheader.php');
-require_once('../controllers/update.php');
 
 // Check ID
 if (!isset($_GET['id'])) {
@@ -10,11 +9,51 @@ if (!isset($_GET['id'])) {
 
 $id = $_GET['id'];
 
-// Single function handles fetch + update
-$therapy = updateTherapy($conn, $id);
+// Fetch therapy data
+$sql = "SELECT * FROM therapies WHERE id = :id";
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(':id', $id);
+$stmt->execute();
+$therapy = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$therapy) {
     die('Therapy not found');
+}
+
+// Update logic
+if (isset($_POST['updatetherapy'])) {
+
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+    $status = $_POST['status'];
+
+    // Image handling
+    if (!empty($_FILES['image']['name'])) {
+        $imageName = $_FILES['image']['name'];
+        $tmpName = $_FILES['image']['tmp_name'];
+        move_uploaded_file($tmpName, "../uploads/therapies/" . $imageName);
+    } else {
+        $imageName = $therapy['image']; // keep old image
+    }
+
+    $updateSql = "UPDATE therapies SET
+                    title = :title,
+                    description = :description,
+                    image = :image,
+                    status = :status
+                  WHERE id = :id";
+
+    $updateStmt = $conn->prepare($updateSql);
+    $updateStmt->bindParam(':title', $title);
+    $updateStmt->bindParam(':description', $description);
+    $updateStmt->bindParam(':image', $imageName);
+    $updateStmt->bindParam(':status', $status);
+    $updateStmt->bindParam(':id', $id);
+
+    if ($updateStmt->execute()) {
+        header("Location: index.php");
+        exit;
+    }
 }
 ?>
 

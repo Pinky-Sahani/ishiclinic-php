@@ -1,62 +1,20 @@
 <?php
 require_once('../../connect.php');
 include('../adminheader.php');
+require_once('../controllers/update.php');
 
-// Get ID
+// Check ID
 if (!isset($_GET['id'])) {
-    die('ID not found');
+    die('Slider ID not found');
 }
 
 $id = $_GET['id'];
 
-// Fetch slider data
-$sql = "SELECT * FROM sliders WHERE id = :id";
-$stmt = $conn->prepare($sql);
-$stmt->bindParam(':id', $id);
-$stmt->execute();
-$slider = $stmt->fetch(PDO::FETCH_ASSOC);
+// Single function handles fetch + update
+$slider = updateSlider($conn, $id);
 
 if (!$slider) {
     die('Slider not found');
-}
-
-// Update logic
-if (isset($_POST['updateslider'])) {
-
-    $title = $_POST['title'];
-    $subtitle = $_POST['subtitle'];
-    $description = $_POST['description'];
-    $status = $_POST['status'];
-
-    // Image handling
-    if (!empty($_FILES['image']['name'])) {
-        $imageName = $_FILES['image']['name'];
-        $tmpName = $_FILES['image']['tmp_name'];
-        move_uploaded_file($tmpName, "../uploads/sliders/" . $imageName);
-    } else {
-        $imageName = $slider['image']; // keep old image
-    }
-
-    $updateSql = "UPDATE sliders SET
-                    title = :title,
-                    subtitle = :subtitle,
-                    description_text = :description,
-                    image = :image,
-                    status = :status
-                  WHERE id = :id";
-
-    $updateStmt = $conn->prepare($updateSql);
-    $updateStmt->bindParam(':title', $title);
-    $updateStmt->bindParam(':subtitle', $subtitle);
-    $updateStmt->bindParam(':description', $description);
-    $updateStmt->bindParam(':image', $imageName);
-    $updateStmt->bindParam(':status', $status);
-    $updateStmt->bindParam(':id', $id);
-
-    if ($updateStmt->execute()) {
-        header("Location: index.php");
-        exit;
-    }
 }
 ?>
 

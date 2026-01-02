@@ -1,6 +1,5 @@
 <?php
 require_once('../../connect.php');
-include('../adminheader.php');
 require_once('../controllers/update.php');
 
 // Check ID
@@ -79,9 +78,6 @@ if (!$slider) {
                     Update
                 </button>
 
-                <a href="index.php" class="bg-gray-500 text-white px-6 py-2 rounded hover:bg-gray-600 transition">
-                    Cancel
-                </a>
             </div>
 
         </form>

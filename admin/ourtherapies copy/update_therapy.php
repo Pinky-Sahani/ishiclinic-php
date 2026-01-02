@@ -1,6 +1,6 @@
 <?php
 require_once('../../connect.php');
-
+include('../adminheader.php');
 require_once('../controllers/update.php');
 
 // Check ID

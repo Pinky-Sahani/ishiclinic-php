@@ -1,11 +1,9 @@
-</div>
-<!-- Page Content End -->
+</div> <!-- END MAIN WRAPPER -->
 
-<!-- Footer -->
-<footer class="bg-gray-800 text-white text-center p-3 mt-10">
-    © 2026 Admin Panel. All Rights Reserved.
+<!-- FOOTER -->
+<footer class="text-center text-sm text-gray-500 py-3 bg-gray-100">
+    © 2026 Admin Dashboard. All rights reserved.
 </footer>
 
 </body>
-
 </html>

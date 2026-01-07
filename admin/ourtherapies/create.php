@@ -22,14 +22,19 @@ if ($isInsert) {
         <div class="bg-white h-full rounded shadow p-8">
 
             <!-- Page Header -->
-            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
-                <h1 class="text-xl sm:text-2xl md:text-3xl font-semibold text-[#7b61ff]">
-                    Add New Therapy
+             <div class="flex justify-between items-center gap-4 p-3 border-b bg-white sticky top-0 z-20">
+            <!-- <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6"> -->
+                <h1 class="text-lg sm:text-2xl md:text-2xl font-bold text-black">
+                    Add Therapy
                 </h1>
-
-                <a href="manage_therapy.php" class="text-[#7b61ff] hover:underline text-sm sm:text-base">
-                    ← Back to List
+                <a href="manage_therapy.php"
+                    class="bg-gray-600 text-white text-sm sm:text-base px-4 py-2 rounded hover:bg-gray-700 transition">
+                    ← Back
                 </a>
+
+                <!-- <a href="manage_therapy.php" class="text-[#7b61ff] hover:underline text-sm sm:text-base">
+                    ← Back to List
+                </a> -->
             </div>
 
             <!-- FORM -->
@@ -37,7 +42,7 @@ if ($isInsert) {
 
                 <!-- Title -->
                 <div>
-                    <label class="block mb-2 font-medium">Therapy Title</label>
+                    <label class="block mb-2 font-medium mt-4">Therapy Title</label>
                     <input type="text" name="title" required class="w-full border border-gray-300 rounded-lg p-3">
                 </div>
 
@@ -66,14 +71,11 @@ if ($isInsert) {
                 <!-- Buttons -->
                 <div class="pt-4 flex gap-3">
                     <button type="submit" name="savetherapy"
-                        class="bg-[#7b61ff] text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition">
+                        class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition">
                         Save Therapy
                     </button>
 
-                    <a href="manage_therapy.php"
-                        class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition">
-                        Cancel
-                    </a>
+                   
                 </div>
 
             </form>

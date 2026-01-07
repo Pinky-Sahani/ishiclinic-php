@@ -30,75 +30,81 @@ $sliders = fetchSliders($conn);
             </div>
 
             <!-- TABLE SCROLL AREA -->
-            <div class="flex-1 overflow-auto">
+            <!-- TABLE WRAPPER (controls scrolling) -->
+            <div class="relative bg-white rounded shadow h-[calc(100vh-200px)] overflow-hidden">
 
-                <table class="min-w-max w-full border text-sm sm:text-base">
+                <!-- TABLE SCROLL AREA -->
+                <div class="overflow-x-auto overflow-y-auto h-full">
 
-                    <!-- STICKY TABLE HEADER -->
-                    <thead class="bg-gray-200 sticky top-0 z-10 shadow">
-                        <tr>
-                            <th class="border p-2 ">Sr No</th>
-                            <th class="border p-2 ">Image</th>
-                            <th class="border p-2">Title</th>
-                            <th class="border p-2">Subtitle</th>
-                            <th class="border p-2 ">Description</th>
-                            <th class="border p-2 ">Status</th>
-                            <th class="border p-2">Action</th>
-                        </tr>
-                    </thead>
+                    <table class="min-w-[900px] w-full border-collapse text-sm sm:text-base">
 
-                    <tbody>
-                        <?php foreach ($sliders as $index => $slider): ?>
-                            <tr class="text-center">
-
-                                <td class="border p-2"><?= $index + 1 ?></td>
-
-                                <td class="border p-2">
-                                    <img src="../uploads/sliders/<?= $slider['image'] ?>"
-                                        class="mx-auto w-16 sm:w-20 md:w-24">
-                                </td>
-
-                                <td class="border p-2 whitespace-nowrap">
-                                    <?= $slider['title'] ?>
-                                </td>
-
-                                <td class="border p-2 hidden md:table-cell">
-                                    <?= $slider['subtitle'] ?>
-                                </td>
-
-                                <td class="border p-2 hidden lg:table-cell">
-                                    <?= $slider['description_text'] ?>
-                                </td>
-
-                                <td class="border p-2">
-                                    <span class="<?= $slider['status'] ? 'text-green-600' : 'text-red-600' ?>">
-                                        <?= $slider['status'] ? 'Active' : 'Inactive' ?>
-                                    </span>
-                                </td>
-
-                                <td class="border p-2">
-                                    <div class="flex flex-col sm:flex-row gap-2 justify-center">
-                                        <a href="update_slider.php?id=<?= $slider['id'] ?>"
-                                            class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">
-                                            Edit
-                                        </a>
-
-                                        <a href="delete_slider.php?id=<?= $slider['id'] ?>"
-                                            onclick="return confirm('Are you sure?');"
-                                            class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded text-sm">
-                                            Delete
-                                        </a>
-                                    </div>
-                                </td>
-
+                        <!-- STICKY HEADER -->
+                        <thead class="bg-gray-200 sticky top-0 z-20 shadow-sm">
+                            <tr>
+                                <th class="border p-3 text-center text-nowrap">Sr No</th>
+                                <th class="border p-3 text-center">Image</th>
+                                <th class="border p-3 text-center">Title</th>
+                                <th class="border p-3 text-center whitespace-nowrap hidden md:table-cell">Subtitle</th>
+                                <th class="border p-3 text-center whitespace-nowrap hidden lg:table-cell">Description</th>
+                                <th class="border p-3 text-center">Status</th>
+                                <th class="border p-3 text-center">Action</th>
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
+                        </thead>
 
-                </table>
+                        <tbody class="bg-white">
+                            <?php foreach ($sliders as $index => $slider): ?>
+                                <tr class="hover:bg-gray-50 transition">
 
+                                    <td class="border p-3"><?= $index + 1 ?></td>
+
+                                    <td class="border p-3">
+                                        <img src="../uploads/sliders/<?= $slider['image'] ?>"
+                                            class="w-16 sm:w-20 md:w-24 rounded mx-auto">
+                                    </td>
+
+                                    <td class="border p-3 font-medium whitespace-nowrap">
+                                        <?= $slider['title'] ?>
+                                    </td>
+
+                                    <td class="border p-3 hidden md:table-cell">
+                                        <?= $slider['subtitle'] ?>
+                                    </td>
+
+                                    <td class="border p-3 hidden lg:table-cell max-w-xs truncate">
+                                        <?= $slider['description_text'] ?>
+                                    </td>
+
+                                    <td class="border p-3">
+                                        <span
+                                            class="font-semibold <?= $slider['status'] ? 'text-green-600' : 'text-red-600' ?>">
+                                            <?= $slider['status'] ? 'Active' : 'Inactive' ?>
+                                        </span>
+                                    </td>
+
+                                    <td class="border p-3">
+                                        <div class="flex flex-col sm:flex-row gap-2 justify-center">
+                                            <a href="update_slider.php?id=<?= $slider['id'] ?>"
+                                                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm text-center">
+                                                Edit
+                                            </a>
+
+                                            <a href="delete_slider.php?id=<?= $slider['id'] ?>"
+                                                onclick="return confirm('Are you sure?');"
+                                                class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded text-sm text-center">
+                                                Delete
+                                            </a>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+
+                    </table>
+
+                </div>
             </div>
-
+            <!-- table end here   -->
         </div>
     </main>
 </div>

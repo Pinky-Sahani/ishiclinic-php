@@ -29,7 +29,19 @@ if (!$therapy) {
         <div class="bg-white h-full rounded shadow p-6 sm:p-8">
 
             <!-- Page Header -->
-            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
+   <div class="flex justify-between items-center gap-4 p-3 border-b bg-white sticky top-0 z-20">
+                <h2 class="text-lg sm:text-xl md:text-2xl font-bold">
+                    Update Therapy
+                </h2>
+
+                <a href="manage_therapy.php"
+                    class="bg-gray-600 text-white text-sm sm:text-base px-4 py-2 rounded hover:bg-gray-700 transition">
+                    ← Back
+                </a>
+            </div>
+
+
+            <!-- <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
                 <h2 class="text-xl sm:text-2xl font-semibold text-[#7b61ff]">
                     Update Therapy
                 </h2>
@@ -37,14 +49,14 @@ if (!$therapy) {
                 <a href="manage_therapy.php" class="text-[#7b61ff] hover:underline text-sm sm:text-base">
                     ← Back to List
                 </a>
-            </div>
+            </div> -->
 
             <!-- FORM -->
             <form method="POST" enctype="multipart/form-data" class="max-w-3xl space-y-5">
 
                 <!-- Title -->
                 <div>
-                    <label class="block mb-1 font-medium">Title</label>
+                    <label class="block mb-1 font-medium mt-4">Title</label>
                     <input type="text" name="title" value="<?= $therapy['title']; ?>"
                         class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#7b61ff]"
                         required>
@@ -80,7 +92,22 @@ if (!$therapy) {
                 </div>
 
                 <!-- Buttons -->
-                <div class="flex flex-col sm:flex-row gap-3 pt-4">
+
+
+                <div class="flex gap-3 pt-4">
+                    <button type="submit" name="updatetherapy"
+                        class="bg-green-600 text-white px-2 py-2 rounded hover:bg-green-700 transition">
+                        Update Therapy
+                    </button>
+
+                    <a href="manage_therapy.php"
+                        class="bg-red-600 text-white px-8 py-2 rounded hover:bg-red-700 transition">
+                        Cancel
+                    </a>
+                </div>
+
+
+                <!-- <div class="flex flex-col sm:flex-row gap-3 pt-4">
                     <button type="submit" name="updatetherapy"
                         class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition">
                         Update Therapy
@@ -90,7 +117,7 @@ if (!$therapy) {
                         class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition text-center">
                         Cancel
                     </a>
-                </div>
+                </div> -->
 
             </form>
 

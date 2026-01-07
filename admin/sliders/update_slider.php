@@ -29,7 +29,8 @@ if (!$slider) {
         <div class="bg-white h-full rounded shadow p-6">
 
             <!-- Page Header -->
-            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
+    
+                 <div class="flex justify-between items-center gap-4 p-3 border-b bg-white sticky top-0 z-20">
                 <h2 class="text-lg sm:text-xl md:text-2xl font-bold">
                     Update Slider
                 </h2>
@@ -45,7 +46,7 @@ if (!$slider) {
 
                 <!-- Title -->
                 <div>
-                    <label class="block mb-1 font-medium">Title</label>
+                    <label class="block mb-1 font-medium mt-4">Title</label>
                     <input type="text" name="title" value="<?= $slider['title']; ?>"
                         class="w-full border rounded px-3 py-2" required>
                 </div>
@@ -88,12 +89,12 @@ if (!$slider) {
                 <!-- Buttons -->
                 <div class="flex gap-3 pt-4">
                     <button type="submit" name="updateslider"
-                        class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition">
+                        class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
                         Update Slider
                     </button>
 
                     <a href="manage_slider.php"
-                        class="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700 transition">
+                        class="bg-red-600 text-white px-8 py-2 rounded hover:bg-red-700 transition">
                         Cancel
                     </a>
                 </div>

@@ -1,4 +1,5 @@
 <?php
+require_once('../adminheader.php');
 require_once('../../connect.php');
 require_once('../controllers/update.php');
 
@@ -9,7 +10,7 @@ if (!isset($_GET['id'])) {
 
 $id = $_GET['id'];
 
-// Single function handles fetch + update
+// Fetch + Update handled in one function
 $slider = updateSlider($conn, $id);
 
 if (!$slider) {
@@ -17,74 +18,91 @@ if (!$slider) {
 }
 ?>
 
-<!DOCTYPE html>
-<html>
+<!-- MAIN WRAPPER -->
+<div class="flex min-h-[calc(100vh-106px)]">
 
-<head>
-    <title>Update Slider</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
+    <!-- SIDEBAR -->
+    <?php require_once('../adminsidebar.php'); ?>
 
-<body class="bg-gray-100 p-4 sm:p-6 md:p-10">
+    <!-- CONTENT AREA -->
+    <main class="flex-1 p-2">
+        <div class="bg-white h-full rounded shadow p-6">
 
-    <div class="max-w-3xl mx-auto bg-white p-6 rounded shadow">
+            <!-- Page Header -->
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
+                <h2 class="text-lg sm:text-xl md:text-2xl font-bold">
+                    Update Slider
+                </h2>
 
-        <h2 class="text-xl font-bold mb-6">Update Slider</h2>
-
-        <form method="POST" enctype="multipart/form-data" class="space-y-4">
-
-            <!-- Title -->
-            <div>
-                <label class="block mb-1 font-medium">Title</label>
-                <input type="text" name="title" value="<?= $slider['title']; ?>" class="w-full border rounded px-3 py-2"
-                    required>
+                <a href="manage_slider.php"
+                    class="bg-gray-600 text-white text-sm sm:text-base px-4 py-2 rounded hover:bg-gray-700 transition">
+                    ← Back
+                </a>
             </div>
 
-            <!-- Subtitle -->
-            <div>
-                <label class="block mb-1 font-medium">Subtitle</label>
-                <input type="text" name="subtitle" value="<?= $slider['subtitle']; ?>"
-                    class="w-full border rounded px-3 py-2">
-            </div>
+            <!-- FORM -->
+            <form method="POST" enctype="multipart/form-data" class="max-w-3xl space-y-4">
 
-            <!-- Description -->
-            <div>
-                <label class="block mb-1 font-medium">Description</label>
-                <textarea name="description" rows="4"
-                    class="w-full border rounded px-3 py-2"><?= $slider['description_text']; ?></textarea>
-            </div>
+                <!-- Title -->
+                <div>
+                    <label class="block mb-1 font-medium">Title</label>
+                    <input type="text" name="title" value="<?= $slider['title']; ?>"
+                        class="w-full border rounded px-3 py-2" required>
+                </div>
 
-            <!-- Image -->
-            <div>
-                <label class="block mb-1 font-medium">Image</label>
-                <input type="file" name="image" class="w-full border rounded px-3 py-2">
+                <!-- Subtitle -->
+                <div>
+                    <label class="block mb-1 font-medium">Subtitle</label>
+                    <input type="text" name="subtitle" value="<?= $slider['subtitle']; ?>"
+                        class="w-full border rounded px-3 py-2">
+                </div>
 
-                <img src="../uploads/sliders/<?= $slider['image']; ?>" class="mt-2 w-32 border rounded">
-            </div>
+                <!-- Description -->
+                <div>
+                    <label class="block mb-1 font-medium">Description</label>
+                    <textarea name="description" rows="4"
+                        class="w-full border rounded px-3 py-2"><?= $slider['description_text']; ?></textarea>
+                </div>
 
-            <!-- Status -->
-            <div>
-                <label class="block mb-1 font-medium">Status</label>
-                <select name="status" class="w-full border rounded px-3 py-2">
-                    <option value="1" <?= $slider['status'] == 1 ? 'selected' : ''; ?>>Active</option>
-                    <option value="0" <?= $slider['status'] == 0 ? 'selected' : ''; ?>>Inactive</option>
-                </select>
-            </div>
+                <!-- Image -->
+                <div>
+                    <label class="block mb-1 font-medium">Image</label>
+                    <input type="file" name="image" class="w-full border rounded px-3 py-2">
 
-            <!-- Buttons -->
-            <div class="flex gap-3">
-                <button type="submit" name="updateslider"
-                    class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition">
-                    Update
-                </button>
+                    <img src="../uploads/sliders/<?= $slider['image']; ?>" class="mt-3 w-32 border rounded">
+                </div>
 
-            </div>
+                <!-- Status -->
+                <div>
+                    <label class="block mb-1 font-medium">Status</label>
+                    <select name="status" class="w-full border rounded px-3 py-2">
+                        <option value="1" <?= $slider['status'] == 1 ? 'selected' : ''; ?>>
+                            Active
+                        </option>
+                        <option value="0" <?= $slider['status'] == 0 ? 'selected' : ''; ?>>
+                            Inactive
+                        </option>
+                    </select>
+                </div>
 
-        </form>
+                <!-- Buttons -->
+                <div class="flex gap-3 pt-4">
+                    <button type="submit" name="updateslider"
+                        class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition">
+                        Update Slider
+                    </button>
 
-    </div>
+                    <a href="manage_slider.php"
+                        class="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700 transition">
+                        Cancel
+                    </a>
+                </div>
 
-    <?php include('../adminfooter.php'); ?>
-</body>
+            </form>
 
-</html>
+        </div>
+    </main>
+</div>
+
+<!-- FOOTER -->
+<?php require_once('../adminfooter.php'); ?>

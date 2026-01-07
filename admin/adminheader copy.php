@@ -10,7 +10,7 @@
 
 <body class="bg-gray-100 ">
     <!-- TOP NAVBAR -->
-    <header class="bg-slate-900 text-white h-14 flex items-center justify-between px-4 ">
+    <header class="bg-slate-900 text-white h-14 flex items-center justify-between px-4">
         <div class="flex items-center gap-3">
             <!-- Hamburger (Mobile only) -->
             <button onclick="toggleSidebar()" class="md:hidden focus:outline-none">

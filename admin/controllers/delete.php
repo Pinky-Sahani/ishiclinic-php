@@ -11,7 +11,7 @@ function deleteSlider($conn, $id)
     $stmt->bindParam(':id', $id);
 
     if ($stmt->execute()) {
-        header("Location: index.php");
+        header("Location: manage_slider.php");
         exit;
     }
 
@@ -31,7 +31,7 @@ function deleteTherapy($conn, $id)
     $stmt->bindParam(':id', $id);
 
     if ($stmt->execute()) {
-        header("Location: index.php");
+        header("Location: manage_therapy.php");
         exit;
     }
 

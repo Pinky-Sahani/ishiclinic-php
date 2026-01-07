@@ -1,57 +1,69 @@
 <?php
+require_once('../adminheader.php');
 require_once('../../connect.php');
 require_once('../controllers/insert.php');
 
 $isInsert = insertSlider($conn);
 if ($isInsert) {
-    header("Location: index.php");
+    header("Location: manage_slider.php");
     exit;
 }
 ?>
-<!DOCTYPE html>
-<html>
 
-<head>
-    <title>Add Slider</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
+<!-- MAIN WRAPPER -->
+<div class="flex min-h-[calc(100vh-106px)]">
 
-<body class="bg-gray-100 p-10">
+    <!-- SIDEBAR -->
+    <?php require_once('../adminsidebar.php'); ?>
 
-    <div class="max-w-xl mx-auto bg-white p-6 rounded shadow">
+    <!-- CONTENT AREA -->
+    <main class="flex-1 p-2">
+        <div class="bg-white h-full rounded shadow p-6">
 
-        <h2 class="text-xl font-bold mb-4">Add Slider</h2>
+            <!-- Page Header -->
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
+                <h2 class="text-lg sm:text-xl md:text-2xl font-bold">
+                    Add Slider
+                </h2>
 
-        <form action="" method="POST" enctype="multipart/form-data">
+                <a href="manage_slider.php"
+                    class="bg-gray-600 text-white text-sm sm:text-base px-4 py-2 rounded hover:bg-gray-700 transition">
+                    ← Back
+                </a>
+            </div>
 
-            <label class="block mb-2">Title</label>
-            <input type="text" name="title" class="w-full border p-2 mb-4" required>
+            <!-- FORM -->
+            <form action="" method="POST" enctype="multipart/form-data" class="max-w-xl">
 
-            <label class="block mb-2">Subtitle</label>
-            <input type="text" name="subtitle" class="w-full border p-2 mb-4">
+                <label class="block mb-2 font-medium">Title</label>
+                <input type="text" name="title" class="w-full border p-2 mb-4 rounded" required>
 
-            <label class="block mb-2">Description</label>
-            <textarea name="description" class="w-full border p-2 mb-4"></textarea>
+                <label class="block mb-2 font-medium">Subtitle</label>
+                <input type="text" name="subtitle" class="w-full border p-2 mb-4 rounded">
 
-            <label class="block mb-2">Image</label>
-            <input type="file" name="image" class="w-full mb-4" required>
+                <label class="block mb-2 font-medium">Description</label>
+                <textarea name="description" class="w-full border p-2 mb-4 rounded" rows="4"></textarea>
 
-            <label class="block mb-2">Status</label>
-            <select name="status" class="w-full border p-2 mb-4">
-                <option value="1">Active</option>
-                <option value="0">Inactive</option>
-            </select>
+                <label class="block mb-2 font-medium">Image</label>
+                <input type="file" name="image" class="w-full mb-4" required>
 
-            <button type="submit" name="saveslider" class="bg-green-600 text-white px-4 py-2 rounded">
-                Save Slider
-            </button>
+                <label class="block mb-2 font-medium">Status</label>
+                <select name="status" class="w-full border p-2 mb-6 rounded">
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
+                </select>
 
+                <!-- BUTTON -->
+                <button type="submit" name="saveslider"
+                    class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition">
+                    Save Slider
+                </button>
 
+            </form>
 
-        </form>
+        </div>
+    </main>
+</div>
 
-    </div>
-
-</body>
-
-</html>
+<!-- FOOTER -->
+<?php require_once('../adminfooter.php'); ?>

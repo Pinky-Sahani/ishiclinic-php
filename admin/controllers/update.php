@@ -48,7 +48,7 @@ function updateSlider($conn, $id)
 
         // Redirect if success
         if ($updateStmt->execute()) {
-            header("Location: index.php");
+            header("Location: manage_slider.php");
             exit;
         }
     }
@@ -65,6 +65,7 @@ function updateTherapy($conn, $id)
     $stmt->bindParam(':id', $id);
     $stmt->execute();
     $therapy = $stmt->fetch(PDO::FETCH_ASSOC);
+    // print_r($therapy);
 
     if (!$therapy) {
         return false;
@@ -102,7 +103,7 @@ function updateTherapy($conn, $id)
 
         // Redirect if success
         if ($updateStmt->execute()) {
-            header("Location: index.php");
+            header("Location: manage_therapy.php");
             exit;
         }
     }

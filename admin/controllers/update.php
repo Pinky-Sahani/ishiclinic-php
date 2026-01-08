@@ -112,5 +112,59 @@ function updateTherapy($conn, $id)
     return $therapy;
 }
 
+function updateChooseUs($conn, $id)
+{
+    try {
+
+        /* FETCH RECORD */
+        $sql = "SELECT * FROM chooseus WHERE id = :id";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+
+        $choose = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$choose) {
+            return false;
+        }
+
+        /* UPDATE LOGIC */
+        if (isset($_POST['updatechoose'])) {
+
+            $title = $_POST['title'];
+            $icon = $_POST['icon'];
+            $description = $_POST['description'];
+            $status = $_POST['status'];
+
+            $updateSql = "UPDATE chooseus SET
+                            title = :title,
+                            icon = :icon,
+                            description = :description,
+                            status = :status
+                          WHERE id = :id";
+
+            $updateStmt = $conn->prepare($updateSql);
+            $updateStmt->bindParam(':title', $title);
+            $updateStmt->bindParam(':icon', $icon);
+            $updateStmt->bindParam(':description', $description);
+            $updateStmt->bindParam(':status', $status);
+            $updateStmt->bindParam(':id', $id,);
+
+            if ($updateStmt->execute()) {
+                header("Location: manage_chooseUs.php");
+                exit;
+            }
+        }
+
+        /* RETURN DATA FOR FORM */
+        return $choose;
+
+    } catch (PDOException $e) {
+        echo "ChooseUs Update Error: " . $e->getMessage();
+        return false;
+    }
+}
+
+
 
 

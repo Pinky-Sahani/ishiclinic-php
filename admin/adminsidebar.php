@@ -36,6 +36,20 @@
                     💆 <span>Therapies</span>
                 </a>
             </li>
+            
+            <li>
+                <a href="../chooseUs/manage_chooseUs.php"
+                   class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-700">
+                    💆 <span>Why Choose Us</span>
+                </a>
+            </li>
+           
+            <li>
+                <a href="../ourteam/manage_ourteam.php"
+                   class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-700">
+                    💆 <span>Our Team</span>
+                </a>
+            </li>
 
         </ul>
     </nav>

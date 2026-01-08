@@ -33,3 +33,40 @@ function fetchTherapies($conn)
         return [];
     }
 }
+
+
+function fetchWhyChooseUs($conn)
+{
+    try {
+        $sql = "SELECT * FROM chooseus ORDER BY id DESC";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        // Fetch all records
+        $chooseUs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $chooseUs; // return array
+    } catch (PDOException $e) {
+        // On error return empty array
+        return [];
+    }
+}
+
+function fetchTeam($conn)
+{
+    try {
+        $sql = "SELECT * FROM team ORDER BY id DESC";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        // Fetch all team members
+        $team = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        print_r($team);
+
+        return $team;
+    } catch (PDOException $e) {
+        return [];
+    }
+}
+
+

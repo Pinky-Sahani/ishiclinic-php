@@ -77,3 +77,87 @@ function insertTherapy($conn)
         return false;
     }
 }
+
+
+function insertWhyChooseUs($conn)
+{
+    try {
+
+        // Check submit button
+        if (!isset($_POST['submit'])) {
+            return false;
+        }
+
+        $title = $_POST['title'];
+        $icon = $_POST['icon'];
+        $description = $_POST['description'];
+        $status = $_POST['status'];
+
+        $sql = "INSERT INTO chooseus (title, icon, description, status)
+                VALUES (:title, :icon, :description, :status)";
+
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':icon', $icon);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':status', $status, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        return true;
+
+    } catch (PDOException $e) {
+        echo "Why Choose Us Insert Error: " . $e->getMessage();
+        return false;
+    }
+}
+
+
+function insertTeam($conn)
+{
+    try {
+
+        // Check submit button
+        if (!isset($_POST['saveteam'])) {
+            return false;
+        }
+
+        $name = $_POST['name'];
+        $designation = $_POST['designation'];
+        $description = $_POST['description'];
+        $status = $_POST['status'];
+
+        /* IMAGE UPLOAD */
+        $imageName = '';
+        if (!empty($_FILES['image']['name'])) {
+            $imageName = time() . '_' . $_FILES['image']['name'];
+            $tmpName = $_FILES['image']['tmp_name'];
+
+            move_uploaded_file($tmpName, "../uploads/team/" . $imageName);
+        }
+
+        /* SQL INSERT */
+        $sql = "INSERT INTO team (name, designation, description, image, status)
+                VALUES (:name, :designation, :description, :image, :status)";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':designation', $designation);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':image', $imageName);
+        $stmt->bindParam(':status', $status);
+
+        $stmt->execute();
+
+        return true;
+
+    } catch (PDOException $e) {
+        echo "Team Insert Error: " . $e->getMessage();
+        return false;
+    }
+}
+
+
+
+

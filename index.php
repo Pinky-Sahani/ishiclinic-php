@@ -3,6 +3,7 @@ require_once('connect.php');
 require_once('admin/controllers/fetch.php');
 $sliders = fetchSliders($conn);
 $therapies = fetchTherapies($conn);
+$whyChooseList = fetchWhyChooseUs($conn);
 
 ?>
 <!-- Navbar starts here -->
@@ -126,14 +127,13 @@ $therapies = fetchTherapies($conn);
         <!-- Cards Wrapper -->
         <div class="grid md:grid-cols-3 gap-8">
 
-            <?php if (!empty($therapies)) : ?>
-                <?php foreach ($therapies as $therapy) : ?>
+            <?php if (!empty($therapies)): ?>
+                <?php foreach ($therapies as $therapy): ?>
 
                     <div class="bg-white rounded-2xl shadow-md hover:shadow-lg transition p-6">
 
-                        <img src="admin/uploads/therapies/<?= $therapy['image']; ?>"
-                             alt="<?= $therapy['title']; ?>"
-                             class="rounded-xl mb-6 w-full h-56 object-cover">
+                        <img src="admin/uploads/therapies/<?= $therapy['image']; ?>" alt="<?= $therapy['title']; ?>"
+                            class="rounded-xl mb-6 w-full h-56 object-cover">
 
                         <div class="text-center">
                             <div class="text-teal-600 text-3xl mb-2">💚</div>
@@ -149,7 +149,7 @@ $therapies = fetchTherapies($conn);
                     </div>
 
                 <?php endforeach; ?>
-            <?php else : ?>
+            <?php else: ?>
                 <p class="col-span-3 text-center text-gray-500">
                     No therapies found.
                 </p>
@@ -165,57 +165,36 @@ $therapies = fetchTherapies($conn);
 <!-- Why Choose Us section starts here  -->
 <section class="py-16 bg-gray-50">
     <div class="text-center mb-12">
-        <h2 class="text-4xl font-semibold  text-[#7b61ff]">
+        <h2 class="text-4xl font-semibold text-[#7b61ff]">
             Why Choose Us
         </h2>
     </div>
-
     <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6">
 
-        <!-- Card 1 -->
-        <div class="bg-white shadow-sm rounded-xl p-8 text-center border border-gray-100">
-            <div class="flex justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-teal-500" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2">
-                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z" />
-                    <path d="M2 20c1.5-4 6-6 10-6s8.5 2 10 6" />
-                </svg>
-            </div>
-            <h3 class="text-xl font-semibold  mb-2  text-[#7b61ff]">Experienced Team</h3>
-            <p class="text-gray-600">
-                Certified homeopathy & naturopathy doctors with years of clinical experience.
-            </p>
-        </div>
+        <?php foreach ($whyChooseList as $item): ?>
+            <?php if ($item['status'] == 1): ?>
 
-        <!-- Card 2 -->
-        <div class="bg-white shadow-sm rounded-xl p-8 text-center border border-gray-100">
-            <div class="flex justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-teal-500" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2">
-                    <path
-                        d="M12 21s-6-4.35-9-7.87C1 10.5 3 6 7.5 6 9.9 6 12 8.25 12 8.25S14.1 6 16.5 6C21 6 23 10.5 21 13.13C18 16.65 12 21 12 21z" />
-                </svg>
-            </div>
-            <h3 class="text-xl font-semibold  text-[#7b61ff] mb-2">Personalized Care</h3>
-            <p class="text-gray-600">
-                Custom treatment designed after a complete root-cause analysis.
-            </p>
-        </div>
+                <div class="bg-white shadow-sm rounded-xl p-8 text-center border border-gray-100">
 
-        <!-- Card 3 -->
-        <div class="bg-white shadow-sm rounded-xl p-8 text-center border border-gray-100">
-            <div class="flex justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-teal-500" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path d="M12 20c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z" />
-                    <path d="M12 12l2.5-4M12 12l-2.5 4" />
-                </svg>
-            </div>
-            <h3 class="text-xl font-semibold  text-[#7b61ff] mb-2">Safe & Natural</h3>
-            <p class="text-gray-600">
-                100% natural, gentle & effective therapies without side effects.
-            </p>
-        </div>
+                    <!-- ICON -->
+                    <div class="flex justify-center mb-4 text-teal-500">
+                        <?= $item['icon']; ?>
+                    </div>
+
+                    <!-- TITLE -->
+                    <h3 class="text-xl font-semibold mb-2 text-[#7b61ff]">
+                        <?= htmlspecialchars($item['title']); ?>
+                    </h3>
+
+                    <!-- DESCRIPTION -->
+                    <p class="text-gray-600">
+                        <?= htmlspecialchars($item['description']); ?>
+                    </p>
+
+                </div>
+
+            <?php endif; ?>
+        <?php endforeach; ?>
 
     </div>
 </section>

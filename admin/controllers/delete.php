@@ -39,4 +39,24 @@ function deleteTherapy($conn, $id)
 }
 
 
+function deleteChooseUs($conn, $id)
+{
+    if (!$id) {
+        return false;
+    }
+
+    $sql = "DELETE FROM chooseus WHERE id = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+    if ($stmt->execute()) {
+        header("Location: manage_chooseUs.php");
+        exit;
+    }
+
+    return false;
+}
+
+
+
 ?>

@@ -3,7 +3,7 @@ require_once('../adminheader.php');
 require_once('../../connect.php');
 require_once('../controllers/fetch.php');
 
-$sliders = fetchSliders($conn);
+$teamMembers = fetchTeam($conn);
 ?>
 
 <!-- MAIN WRAPPER -->
@@ -20,20 +20,18 @@ $sliders = fetchSliders($conn);
             <!-- FIXED PAGE HEADER -->
             <div class="flex justify-between items-center gap-4 p-3 border-b bg-white sticky top-0 z-20">
                 <h2 class="text-lg sm:text-xl md:text-2xl font-bold">
-                    Slider List
+                    Our Team List
                 </h2>
 
                 <a href="create.php"
                     class="bg-blue-600 text-white text-sm sm:text-base px-3 sm:px-4 py-2 rounded hover:bg-blue-700 transition">
-                    + Add Slider
+                    + Add Team Member
                 </a>
             </div>
 
-            <!-- TABLE SCROLL AREA -->
-            <!-- TABLE WRAPPER (controls scrolling) -->
+            <!-- TABLE WRAPPER -->
             <div class="relative bg-white rounded shadow h-[calc(100vh-200px)] overflow-hidden">
 
-                <!-- TABLE SCROLL AREA -->
                 <div class="overflow-x-auto overflow-y-auto h-full">
 
                     <table class="min-w-[900px] w-full border-collapse text-sm sm:text-base">
@@ -41,56 +39,53 @@ $sliders = fetchSliders($conn);
                         <!-- STICKY HEADER -->
                         <thead class="bg-gray-200 sticky top-0 z-20 shadow-sm">
                             <tr>
-                                <th class="border p-3 text-center text-nowrap">Sr No</th>
-                                <th class="border p-3 text-center">Image</th>
-                                <th class="border p-3 text-center">Title</th>
-                                <th class="border p-3 text-center whitespace-nowrap hidden md:table-cell">Subtitle</th> 
-                               <th class="border p-3 text-center whitespace-nowrap hidden lg:table-cell">Description</th> 
+                                <th class="border p-3 text-center">Sr No</th>
+                                <th class="border p-3 text-center">Photo</th>
+                                <th class="border p-3 text-center">Name</th>
+                                <th class="border p-3 text-center">Designation</th>
                                 <th class="border p-3 text-center">Status</th>
                                 <th class="border p-3 text-center">Action</th>
                             </tr>
                         </thead>
 
                         <tbody class="bg-white">
-                            <?php foreach ($sliders as $index => $slider): ?>
+                            <?php foreach ($teamMembers as $index => $member): ?>
                                 <tr class="hover:bg-gray-50 transition">
 
-                                    <td class="border p-3"><?= $index + 1 ?></td>
-
-                                    <td class="border p-3">
-                                        <img src="../uploads/sliders/<?= $slider['image'] ?>"
-                                            class="w-16 sm:w-20 md:w-24 rounded mx-auto">
+                                    <td class="border p-3 text-center">
+                                        <?= $index + 1 ?>
                                     </td>
 
-                                    <td class="border p-3 font-medium whitespace-nowrap">
-                                        <?= $slider['title'] ?>
+                                    <td class="border p-3 text-center">
+                                        <img src="../uploads/team/<?= $member['image'] ?>"
+                                            class="w-16 h-16 rounded-full object-cover mx-auto">
                                     </td>
 
-                                    <td class="border p-3 hidden md:table-cell">
-                                        <?= $slider['subtitle'] ?>
+                                    <td class="border p-3 font-medium text-center">
+                                        <?= $member['name'] ?>
                                     </td>
 
-                                    <td class="border p-3 hidden lg:table-cell max-w-xs truncate">
-                                        <?= $slider['description_text'] ?>
+                                    <td class="border p-3 text-center">
+                                        <?= $member['designation'] ?>
                                     </td>
 
-                                    <td class="border p-3">
+                                    <td class="border p-3 text-center">
                                         <span
-                                            class="font-semibold <?= $slider['status'] ? 'text-green-600' : 'text-red-600' ?>">
-                                            <?= $slider['status'] ? 'Active' : 'Inactive' ?>
+                                            class="font-semibold <?= $member['status'] ? 'text-green-600' : 'text-red-600' ?>">
+                                            <?= $member['status'] ? 'Active' : 'Inactive' ?>
                                         </span>
                                     </td>
 
                                     <td class="border p-3">
                                         <div class="flex flex-col sm:flex-row gap-2 justify-center">
-                                            <a href="update_slider.php?id=<?= $slider['id'] ?>"
-                                                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm text-center">
+                                            <a href="update_team.php?id=<?= $member['id'] ?>"
+                                                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">
                                                 Edit
                                             </a>
 
-                                            <a href="delete_slider.php?id=<?= $slider['id'] ?>"
+                                            <a href="delete_team.php?id=<?= $member['id'] ?>"
                                                 onclick="return confirm('Are you sure?');"
-                                                class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded text-sm text-center">
+                                                class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded text-sm">
                                                 Delete
                                             </a>
                                         </div>
@@ -104,7 +99,7 @@ $sliders = fetchSliders($conn);
 
                 </div>
             </div>
-            <!-- table end here   -->
+            <!-- table end -->
         </div>
     </main>
 </div>

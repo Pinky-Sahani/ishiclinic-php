@@ -124,8 +124,6 @@ function insertTeam($conn)
         }
 
         $name = $_POST['name'];
-        $designation = $_POST['designation'];
-        $description = $_POST['description'];
         $status = $_POST['status'];
 
         /* IMAGE UPLOAD */
@@ -138,13 +136,11 @@ function insertTeam($conn)
         }
 
         /* SQL INSERT */
-        $sql = "INSERT INTO team (name, designation, description, image, status)
-                VALUES (:name, :designation, :description, :image, :status)";
+        $sql = "INSERT INTO team (name,   image, status)
+                VALUES (:name,   :image, :status)";
 
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':designation', $designation);
-        $stmt->bindParam(':description', $description);
         $stmt->bindParam(':image', $imageName);
         $stmt->bindParam(':status', $status);
 

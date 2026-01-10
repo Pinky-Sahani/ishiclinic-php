@@ -59,4 +59,25 @@ function deleteChooseUs($conn, $id)
 
 
 
+function deleteTeam($conn, $id)
+{
+    if (!$id) {
+        return false;
+    }
+
+    $sql = "DELETE FROM team WHERE id = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+    if ($stmt->execute()) {
+        header("Location: manage_ourteam.php");
+        exit;
+    }
+
+    return false;
+}
+
+
+
+
 ?>

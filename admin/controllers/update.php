@@ -148,7 +148,7 @@ function updateChooseUs($conn, $id)
             $updateStmt->bindParam(':icon', $icon);
             $updateStmt->bindParam(':description', $description);
             $updateStmt->bindParam(':status', $status);
-            $updateStmt->bindParam(':id', $id,);
+            $updateStmt->bindParam(':id', $id, );
 
             if ($updateStmt->execute()) {
                 header("Location: manage_chooseUs.php");
@@ -161,6 +161,70 @@ function updateChooseUs($conn, $id)
 
     } catch (PDOException $e) {
         echo "ChooseUs Update Error: " . $e->getMessage();
+        return false;
+    }
+}
+
+
+function updateTeam($conn, $id)
+{
+    try {
+
+        /* FETCH RECORD */
+        $sql = "SELECT * FROM team WHERE id = :id";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+
+        $team = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$team) {
+            return false;
+        }
+
+        /* UPDATE LOGIC */
+        if (isset($_POST['updateteam'])) {
+
+            $name = $_POST['name'];
+            $status = $_POST['status'];
+
+            // Image handling
+            $imageName = $team['image'];
+
+            if (!empty($_FILES['image']['name'])) {
+
+                $imageName = time() . '_' . $_FILES['image']['name'];
+                $imageTmp = $_FILES['image']['tmp_name'];
+
+                move_uploaded_file(
+                    $imageTmp,
+                    "../uploads/team/" . $imageName
+                );
+            }
+
+            $updateSql = "UPDATE team SET
+                            name = :name,
+                            image = :image,
+                            status = :status
+                          WHERE id = :id";
+
+            $updateStmt = $conn->prepare($updateSql);
+            $updateStmt->bindParam(':name', $name);
+            $updateStmt->bindParam(':image', $imageName);
+            $updateStmt->bindParam(':status', $status);
+            $updateStmt->bindParam(':id', $id);
+
+            if ($updateStmt->execute()) {
+                header("Location: manage_ourteam.php");
+                exit;
+            }
+        }
+
+        /* RETURN DATA FOR FORM */
+        return $team;
+
+    } catch (PDOException $e) {
+        echo "Team Update Error: " . $e->getMessage();
         return false;
     }
 }

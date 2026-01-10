@@ -4,7 +4,7 @@ require_once('admin/controllers/fetch.php');
 $sliders = fetchSliders($conn);
 $therapies = fetchTherapies($conn);
 $whyChooseList = fetchWhyChooseUs($conn);
-$teams = fetchTeam($conn);
+
 ?>
 <!-- Navbar starts here -->
 <?php include('includes/header.php'); ?>
@@ -203,28 +203,31 @@ $teams = fetchTeam($conn);
 <!-- our team section starts here  -->
 <section class="py-16 bg-white">
     <div class="text-center mb-12">
-        <h2 class="text-4xl font-semibold text-[#7b61ff]">Our Team</h2>
+        <h2 class="text-4xl font-semibold  text-[#7b61ff]">Our Team</h2>
     </div>
 
     <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
 
-        <?php if (!empty($teams)) : ?>
-            <?php foreach ($teams as $team) : ?>
-                <div>
-                    <img src="admin/uploads/team/<?= htmlspecialchars($team['image']); ?>"
-                        alt="<?= htmlspecialchars($team['name']); ?>"
-                        class="w-48 h-48 mx-auto rounded-full shadow-md object-cover">
+        <!-- Member 1 -->
+        <div>
+            <img src="assest/images/team1.jpg" alt="Doctor 1"
+                class="w-48 h-48 mx-auto rounded-full shadow-md object-cover">
+            <h3 class="mt-6 text-lg font-medium text-gray-800">Dr. Manoj Kumar</h3>
+        </div>
 
-                    <h3 class="mt-6 text-lg font-medium text-gray-800">
-                        <?= htmlspecialchars($team['name']); ?>
-                    </h3>
-                </div>
-            <?php endforeach; ?>
-        <?php else : ?>
-            <p class="col-span-3 text-center text-gray-500">
-                No team members found
-            </p>
-        <?php endif; ?>
+        <!-- Member 2 -->
+        <div>
+            <img src="assest/images/team3.jpg" alt="Doctor 2"
+                class="w-48 h-48 mx-auto rounded-full shadow-md object-cover">
+            <h3 class="mt-6 text-lg font-medium text-gray-800">Dr. Pragya Shrivastav</h3>
+        </div>
+
+        <!-- Member 3 -->
+        <div>
+            <img src="assest/images/team2.jpg" alt="Doctor 3"
+                class="w-48 h-48 mx-auto rounded-full shadow-md object-cover">
+            <h3 class="mt-6 text-lg font-medium text-gray-800">Dr. Rahul Shukla</h3>
+        </div>
 
     </div>
 </section>

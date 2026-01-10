@@ -42,7 +42,6 @@ $teamMembers = fetchTeam($conn);
                                 <th class="border p-3 text-center">Sr No</th>
                                 <th class="border p-3 text-center">Photo</th>
                                 <th class="border p-3 text-center">Name</th>
-                                <th class="border p-3 text-center">Designation</th>
                                 <th class="border p-3 text-center">Status</th>
                                 <th class="border p-3 text-center">Action</th>
                             </tr>
@@ -65,9 +64,7 @@ $teamMembers = fetchTeam($conn);
                                         <?= $member['name'] ?>
                                     </td>
 
-                                    <td class="border p-3 text-center">
-                                        <?= $member['designation'] ?>
-                                    </td>
+                                   
 
                                     <td class="border p-3 text-center">
                                         <span
@@ -78,12 +75,12 @@ $teamMembers = fetchTeam($conn);
 
                                     <td class="border p-3">
                                         <div class="flex flex-col sm:flex-row gap-2 justify-center">
-                                            <a href="update_team.php?id=<?= $member['id'] ?>"
+                                            <a href="update_ourteam.php?id=<?= $member['id'] ?>"
                                                 class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">
                                                 Edit
                                             </a>
 
-                                            <a href="delete_team.php?id=<?= $member['id'] ?>"
+                                            <a href="delete_ourteam.php?id=<?= $member['id'] ?>"
                                                 onclick="return confirm('Are you sure?');"
                                                 class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded text-sm">
                                                 Delete

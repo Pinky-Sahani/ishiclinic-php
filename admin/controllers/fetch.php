@@ -61,7 +61,7 @@ function fetchTeam($conn)
 
         // Fetch all team members
         $team = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        print_r($team);
+        // print_r($team);
 
         return $team;
     } catch (PDOException $e) {

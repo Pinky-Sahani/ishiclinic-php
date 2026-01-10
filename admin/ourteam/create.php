@@ -39,20 +39,12 @@ if ($isInsert) {
                 <label class="block mb-2 font-medium">Name</label>
                 <input type="text" name="name" class="w-full border p-2 mb-4 rounded" required>
 
-                <!-- DESIGNATION -->
-                <label class="block mb-2 font-medium">Designation</label>
-                <input type="text" name="designation" class="w-full border p-2 mb-4 rounded">
-
-                <!-- DESCRIPTION -->
-                <label class="block mb-2 font-medium">Description</label>
-                <textarea name="description" class="w-full border p-2 mb-4 rounded" rows="4"></textarea>
-
                 <!-- IMAGE -->
-                <label class="block mb-2 font-medium">Profile Image</label>
+                <label class="block mb-2 font-medium mt-4">Profile Image</label>
                 <input type="file" name="image" class="w-full mb-4">
 
                 <!-- STATUS -->
-                <label class="block mb-2 font-medium">Status</label>
+                <label class="block mb-2 font-medium mt-4">Status</label>
                 <select name="status" class="w-full border p-2 mb-6 rounded">
                     <option value="1">Active</option>
                     <option value="0">Inactive</option>

@@ -41,15 +41,7 @@ if (!$therapy) {
             </div>
 
 
-            <!-- <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
-                <h2 class="text-xl sm:text-2xl font-semibold text-[#7b61ff]">
-                    Update Therapy
-                </h2>
-
-                <a href="manage_therapy.php" class="text-[#7b61ff] hover:underline text-sm sm:text-base">
-                    ← Back to List
-                </a>
-            </div> -->
+           
 
             <!-- FORM -->
             <form method="POST" enctype="multipart/form-data" class="max-w-3xl space-y-5">
@@ -93,7 +85,6 @@ if (!$therapy) {
 
                 <!-- Buttons -->
 
-
                 <div class="flex gap-3 pt-4">
                     <button type="submit" name="updatetherapy"
                         class="bg-green-600 text-white px-2 py-2 rounded hover:bg-green-700 transition">
@@ -105,20 +96,6 @@ if (!$therapy) {
                         Cancel
                     </a>
                 </div>
-
-
-                <!-- <div class="flex flex-col sm:flex-row gap-3 pt-4">
-                    <button type="submit" name="updatetherapy"
-                        class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition">
-                        Update Therapy
-                    </button>
-
-                    <a href="manage_therapy.php"
-                        class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition text-center">
-                        Cancel
-                    </a>
-                </div> -->
-
             </form>
 
         </div>

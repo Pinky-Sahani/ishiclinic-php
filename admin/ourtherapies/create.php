@@ -23,7 +23,7 @@ if ($isInsert) {
 
             <!-- Page Header -->
              <div class="flex justify-between items-center gap-4 p-3 border-b bg-white sticky top-0 z-20">
-            <!-- <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6"> -->
+            
                 <h1 class="text-lg sm:text-2xl md:text-2xl font-bold text-black">
                     Add Therapy
                 </h1>
@@ -32,9 +32,6 @@ if ($isInsert) {
                     ← Back
                 </a>
 
-                <!-- <a href="manage_therapy.php" class="text-[#7b61ff] hover:underline text-sm sm:text-base">
-                    ← Back to List
-                </a> -->
             </div>
 
             <!-- FORM -->

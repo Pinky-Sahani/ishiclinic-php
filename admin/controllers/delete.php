@@ -80,4 +80,30 @@ function deleteTeam($conn, $id)
 
 
 
+function deleteFeature($conn, $id)
+{
+    if (!$id) {
+        return false;
+    }
+
+    $sql = "DELETE FROM features WHERE id = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+    if ($stmt->execute()) {
+        header("Location: manage_ourfeatures.php");
+        exit;
+    }
+
+    return false;
+}
+
+
+
+
+
+
+
+
+
 ?>

@@ -29,12 +29,19 @@ if (!$choose) {
         <div class="bg-white h-full rounded shadow p-6">
 
             <!-- PAGE HEADER -->
-            <div class="flex justify-between items-center p-3 border-b sticky top-0 bg-white">
-                <h2 class="text-xl font-bold">Update Why Choose Us</h2>
+            <div class="flex items-center justify-between p-3 border-b sticky top-0 bg-white z-20">
 
-                <a href="manage_chooseUs.php" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">
+                <!-- Title -->
+                <h2 class="text-lg sm:text-xl font-bold">
+                    Update Why Choose Us
+                </h2>
+
+                <!-- Back Button -->
+                <a href="manage_chooseUs.php"
+                    class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition whitespace-nowrap">
                     ← Back
                 </a>
+
             </div>
 
             <!-- FORM -->
@@ -70,16 +77,20 @@ if (!$choose) {
                     </select>
                 </div>
 
-                <div class="flex gap-3 pt-4">
+                <div class="flex  gap-3 pt-4">
+
+                    <!-- Update Button -->
                     <button type="submit" name="updatechoose"
-                        class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
-                        Update Choose Us
+                        class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition w-full sm:w-auto  whitespace-nowrap">
+                        Update ChooseUs
                     </button>
 
+                    <!-- Cancel Button -->
                     <a href="manage_chooseUs.php"
-                        class="bg-red-600 text-white px-8 py-2 rounded hover:bg-red-700 transition">
+                        class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition text-center w-full sm:w-auto whitespace-nowrap">
                         Cancel
                     </a>
+
                 </div>
 
             </form>

@@ -25,7 +25,7 @@ if ($isInsert) {
             <!-- PAGE HEADER -->
             <div class="flex justify-between items-center gap-4 p-3 border-b bg-white sticky top-0 z-20">
                 <h2 class="text-lg sm:text-xl md:text-2xl font-bold">
-                    Add Why Choose Us
+                    Add  Choose Us
                 </h2>
 
                 <a href="manage_chooseUs.php"
@@ -66,7 +66,7 @@ if ($isInsert) {
                 <!-- BUTTON -->
                 <button type="submit" name="submit"
                         class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition">
-                    Save
+                    Save chooseUs
                 </button>
 
             </form>

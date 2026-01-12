@@ -156,4 +156,50 @@ function insertTeam($conn)
 
 
 
+function insertFeature($conn)
+{
+    try {
+
+        // Check submit button
+        if (!isset($_POST['savefeature'])) {
+            return false;
+        }
+
+        $title = $_POST['title'];
+        $description = $_POST['description'];
+        $status = $_POST['status'];
+
+        /* IMAGE UPLOAD */
+        $imageName = '';
+        if (!empty($_FILES['image']['name'])) {
+
+            $imageName = time() . '_' . $_FILES['image']['name'];
+            $tmpName   = $_FILES['image']['tmp_name'];
+
+            move_uploaded_file($tmpName, "../uploads/features/" . $imageName);
+        }
+
+        /* SQL INSERT */
+        $sql = "INSERT INTO features (title, description, image, status)
+                VALUES (:title, :description, :image, :status)";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':image', $imageName);
+        $stmt->bindParam(':status', $status);
+
+        $stmt->execute();
+
+        return true;
+
+    } catch (PDOException $e) {
+        echo "Feature Insert Error: " . $e->getMessage();
+        return false;
+    }
+}
+
+
+
+
 

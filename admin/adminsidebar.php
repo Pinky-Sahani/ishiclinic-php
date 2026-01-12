@@ -1,12 +1,13 @@
 <!-- MOBILE OVERLAY -->
 <div id="overlay"
      class="fixed inset-0 bg-black bg-opacity-50 hidden z-40 md:hidden"
-     onclick="toggleSidebar()"></div>
-
+     onclick="toggleSidebar()">
+</div>
 <!-- SIDEBAR -->
 <aside id="sidebar"
-       class="fixed md:static inset-y-0 left-0 w-64 bg-slate-900 text-white
-              transform -translate-x-full md:translate-x-0
+       class="fixed md:static top-0 left-0 w-full md:w-64 h-auto md:h-screen
+              bg-slate-900 text-white
+              transform -translate-y-full md:translate-y-0
               transition-transform duration-300 z-50">
 
     <nav class="p-4">
@@ -48,6 +49,12 @@
                 <a href="../ourteam/manage_ourteam.php"
                    class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-700">
                     💆 <span>Our Team</span>
+                </a>
+            </li>
+              <li>
+                <a href="../ourfeatures/manage_ourfeatures.php"
+                   class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-700">
+                    💆 <span>Our Features</span>
                 </a>
             </li>
 

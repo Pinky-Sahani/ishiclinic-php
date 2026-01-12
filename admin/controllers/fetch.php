@@ -70,3 +70,21 @@ function fetchTeam($conn)
 }
 
 
+function fetchFeatures($conn)
+{
+    try {
+        $sql = "SELECT * FROM features ORDER BY id DESC";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        // Fetch all features
+        $features = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $features;
+
+    } catch (PDOException $e) {
+        return [];
+    }
+}
+
+
+

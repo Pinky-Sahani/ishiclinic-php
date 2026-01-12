@@ -33,11 +33,12 @@ $sliders = fetchSliders($conn);
             <!-- TABLE WRAPPER (controls scrolling) -->
             <div class="relative bg-white rounded shadow h-[calc(100vh-200px)] overflow-hidden">
 
-                <!-- TABLE SCROLL AREA -->
-                <div class="overflow-x-auto overflow-y-auto h-full">
+                        <!-- TABLE SCROLL AREA -->
+                        <div class="overflow-x-auto overflow-y-auto h-full">
 
                     <table class="min-w-[900px] w-full border-collapse text-sm sm:text-base">
 
+                    
                         <!-- STICKY HEADER -->
                         <thead class="bg-gray-200 sticky top-0 z-20 shadow-sm">
                             <tr>

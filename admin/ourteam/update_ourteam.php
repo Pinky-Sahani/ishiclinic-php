@@ -31,7 +31,7 @@ if (!$team) {
             <!-- PAGE HEADER -->
             <div class="flex justify-between items-center gap-4 p-3 border-b bg-white sticky top-0 z-20">
                 <h2 class="text-lg sm:text-xl md:text-2xl font-bold">
-                    Update Team Member
+                    Update Team 
                 </h2>
 
                 <a href="manage_ourteam.php"

@@ -232,3 +232,68 @@ function updateTeam($conn, $id)
 
 
 
+function updateFeature($conn, $id)
+{
+    try {
+
+        /* FETCH RECORD */
+        $sql = "SELECT * FROM features WHERE id = :id";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+
+        $feature = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$feature) {
+            return false;
+        }
+
+        /* UPDATE LOGIC */
+        if (isset($_POST['updatefeature'])) {
+
+            $title = $_POST['title'];
+            $description = $_POST['description'];
+            $status = $_POST['status'];
+
+            /* IMAGE HANDLING */
+            $imageName = $feature['image'];
+
+            if (!empty($_FILES['image']['name'])) {
+
+                $imageName = time() . '_' . $_FILES['image']['name'];
+                $imageTmp  = $_FILES['image']['tmp_name'];
+
+                move_uploaded_file(
+                    $imageTmp,
+                    "../uploads/features/" . $imageName
+                );
+            }
+
+            $updateSql = "UPDATE features SET
+                            title = :title,
+                            description = :description,
+                            image = :image,
+                            status = :status
+                          WHERE id = :id";
+
+            $updateStmt = $conn->prepare($updateSql);
+            $updateStmt->bindParam(':title', $title);
+            $updateStmt->bindParam(':description', $description);
+            $updateStmt->bindParam(':image', $imageName);
+            $updateStmt->bindParam(':status', $status);
+            $updateStmt->bindParam(':id', $id);
+
+            if ($updateStmt->execute()) {
+                header("Location: manage_ourfeatures.php");
+                exit;
+            }
+        }
+
+        /* RETURN DATA FOR FORM */
+        return $feature;
+
+    } catch (PDOException $e) {
+        echo "Feature Update Error: " . $e->getMessage();
+        return false;
+    }
+}

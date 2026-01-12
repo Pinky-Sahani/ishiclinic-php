@@ -183,12 +183,12 @@ $teams = fetchTeam($conn);
 
                     <!-- TITLE -->
                     <h3 class="text-xl font-semibold mb-2 text-[#7b61ff]">
-                        <?= htmlspecialchars($item['title']); ?>
+                        <?= $item['title']; ?>
                     </h3>
 
                     <!-- DESCRIPTION -->
                     <p class="text-gray-600">
-                        <?= htmlspecialchars($item['description']); ?>
+                        <?= $item['description']; ?>
                     </p>
 
                 </div>

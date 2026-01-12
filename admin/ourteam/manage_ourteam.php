@@ -25,7 +25,7 @@ $teamMembers = fetchTeam($conn);
 
                 <a href="create.php"
                     class="bg-blue-600 text-white text-sm sm:text-base px-3 sm:px-4 py-2 rounded hover:bg-blue-700 transition">
-                    + Add Team Member
+                    + Add Team
                 </a>
             </div>
 
@@ -64,7 +64,7 @@ $teamMembers = fetchTeam($conn);
                                         <?= $member['name'] ?>
                                     </td>
 
-                                   
+
 
                                     <td class="border p-3 text-center">
                                         <span
@@ -73,18 +73,23 @@ $teamMembers = fetchTeam($conn);
                                         </span>
                                     </td>
 
+
                                     <td class="border p-3">
-                                        <div class="flex flex-col sm:flex-row gap-2 justify-center">
+                                        <div class="flex flex-col sm:flex-row sm:justify-center gap-2">
+
+                                            <!-- Edit Button -->
                                             <a href="update_ourteam.php?id=<?= $member['id'] ?>"
-                                                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">
+                                                class="bg-green-600 hover:bg-green-700 text-white px-3 sm:px-4 py-2 rounded text-sm text-center w-full sm:w-auto ">
                                                 Edit
                                             </a>
 
+                                            <!-- Delete Button -->
                                             <a href="delete_ourteam.php?id=<?= $member['id'] ?>"
                                                 onclick="return confirm('Are you sure?');"
-                                                class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded text-sm">
+                                                class="bg-red-600 hover:bg-red-700 text-white px-3 sm:px-4 py-2 rounded text-sm text-center w-full sm:w-auto  ">
                                                 Delete
                                             </a>
+
                                         </div>
                                     </td>
 

@@ -21,12 +21,16 @@ if ($isInsert) {
         <div class="bg-white h-full rounded shadow p-6">
 
             <!-- PAGE HEADER -->
-            <div class="flex justify-between items-center gap-4 p-3 border-b bg-white sticky top-0 z-20">
-                <h2 class="text-lg sm:text-xl md:text-2xl font-bold">
-                    Add Team Member
+
+          
+                <div class="flex justify-between items-center gap-4 p-3 border-b bg-white sticky top-0 z-20">
+                <h2 class="text-xg sm:text-xl md:text-2xl font-bold">
+                    Add Team 
                 </h2>
 
-                <a href="manage_ourteam.php"
+
+
+               <a href="manage_ourteam.php"
                     class="bg-gray-600 text-white text-sm sm:text-base px-4 py-2 rounded hover:bg-gray-700 transition">
                     ← Back
                 </a>
@@ -52,8 +56,8 @@ if ($isInsert) {
 
                 <!-- BUTTON -->
                 <button type="submit" name="saveteam"
-                    class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition">
-                    Save Team Member
+                    class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition mt-4">
+                    Save Team 
                 </button>
 
             </form>

@@ -6,13 +6,15 @@
 </footer>
 
 <script>
-function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
 
-    sidebar.classList.toggle('-translate-x-full');
-    overlay.classList.toggle('hidden');
+
+
+
+function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('-translate-y-full');
+    document.getElementById('overlay').classList.toggle('hidden');
 }
+
 </script>
 
 

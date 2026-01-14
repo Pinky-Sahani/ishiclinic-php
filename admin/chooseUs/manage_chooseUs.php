@@ -25,7 +25,7 @@ $whyChooseList = fetchWhyChooseUs($conn);
                 </h2>
 
                 <a href="create.php"
-                   class="bg-blue-600 text-white text-sm sm:text-base px-3 sm:px-4 py-2 rounded hover:bg-blue-700 transition">
+                    class="bg-blue-600 text-white text-sm sm:text-base px-3 sm:px-4 py-2 rounded hover:bg-blue-700 transition">
                     + Add Item
                 </a>
             </div>
@@ -58,41 +58,40 @@ $whyChooseList = fetchWhyChooseUs($conn);
                                 <?php foreach ($whyChooseList as $index => $row): ?>
                                     <tr class="hover:bg-gray-50 transition">
 
-                                        <td class="border p-3 text-center">
+                                        <td class="border p-1 text-center">
                                             <?= $index + 1 ?>
                                         </td>
 
-                                        <td class="border p-3 text-center">
-                                            <span class="px-2 py-1 text-xs bg-gray-200 rounded capitalize">
-                                                <?= $row['icon'] ?>
-                                            </span>
+                                        <td class="border p-1">
+                                            <img src="../uploads/icon/<?= $row['icon']; ?>"
+                                                class="w-16 h-16 rounded mx-auto">
                                         </td>
 
-                                        <td class="border p-3 font-medium whitespace-nowrap">
+                                        <td class="border p-1 font-medium whitespace-nowrap">
                                             <?= $row['title'] ?>
                                         </td>
 
-                                        <td class="border p-3 hidden md:table-cell max-w-xs truncate">
+                                        <td class="border p-1 hidden md:table-cell max-w-xs truncate">
                                             <?= $row['description'] ?>
                                         </td>
 
-                                        <td class="border p-3 text-center">
+                                        <td class="border p-1 text-center">
                                             <span class="font-semibold
                                                 <?= $row['status'] ? 'text-green-600' : 'text-red-600' ?>">
                                                 <?= $row['status'] ? 'Active' : 'Inactive' ?>
                                             </span>
                                         </td>
 
-                                        <td class="border p-3">
+                                        <td class="border p-1">
                                             <div class="flex flex-col sm:flex-row gap-2 justify-center">
                                                 <a href="update_chooseUs.php?id=<?= $row['id'] ?>"
-                                                   class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm text-center">
+                                                    class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm text-center">
                                                     Edit
                                                 </a>
 
                                                 <a href="delete_chooseUs.php?id=<?= $row['id'] ?>"
-                                                   onclick="return confirm('Are you sure?')"
-                                                   class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded text-sm text-center">
+                                                    onclick="return confirm('Are you sure?')"
+                                                    class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded text-sm text-center">
                                                     Delete
                                                 </a>
                                             </div>

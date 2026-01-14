@@ -41,7 +41,7 @@ if (!$team) {
             </div>
 
             <!-- FORM -->
-            <form method="POST" enctype="multipart/form-data" class="max-w-3xl space-y-4">
+            <form method="POST" enctype="multipart/form-data" class=" space-y-4">
 
                 <!-- Name -->
                 <div>

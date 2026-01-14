@@ -22,22 +22,22 @@ if ($isInsert) {
 
             <!-- PAGE HEADER -->
 
-          
-                <div class="flex justify-between items-center gap-4 p-3 border-b bg-white sticky top-0 z-20">
+
+            <div class="flex justify-between items-center gap-4 p-3 border-b bg-white sticky top-0 z-20">
                 <h2 class="text-xg sm:text-xl md:text-2xl font-bold">
-                    Add Team 
+                    Add Team
                 </h2>
 
 
 
-               <a href="manage_ourteam.php"
+                <a href="manage_ourteam.php"
                     class="bg-gray-600 text-white text-sm sm:text-base px-4 py-2 rounded hover:bg-gray-700 transition">
                     ← Back
                 </a>
             </div>
 
             <!-- FORM -->
-            <form action="" method="POST" enctype="multipart/form-data" class="max-w-xl mt-6">
+            <form action="" method="POST" enctype="multipart/form-data" class=" mt-6">
 
                 <!-- NAME -->
                 <label class="block mb-2 font-medium">Name</label>
@@ -45,7 +45,7 @@ if ($isInsert) {
 
                 <!-- IMAGE -->
                 <label class="block mb-2 font-medium mt-4">Profile Image</label>
-                <input type="file" name="image" class="w-full mb-4">
+                <input type="file" name="image" class="w-full mb-4     w-full border border-gray-300 rounded-lg p-2">
 
                 <!-- STATUS -->
                 <label class="block mb-2 font-medium mt-4">Status</label>
@@ -57,7 +57,7 @@ if ($isInsert) {
                 <!-- BUTTON -->
                 <button type="submit" name="saveteam"
                     class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition mt-4">
-                    Save Team 
+                    Save Team
                 </button>
 
             </form>

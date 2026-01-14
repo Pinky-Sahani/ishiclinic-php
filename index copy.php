@@ -5,25 +5,8 @@ $sliders = fetchSliders($conn);
 $therapies = fetchTherapies($conn);
 $whyChooseList = fetchWhyChooseUs($conn);
 $teams = fetchTeam($conn);
-
-require_once('admin/controllers/insert.php');
-$result = insertContactMessage($conn);
-if ($result === true) {
-    echo "
-    <script>
-        alert('Thank you! Your message has been sent successfully.');
-        window.location.href = window.location.href;
-    </script>
-    ";
-} elseif ($result === false && isset($_POST['send_message'])) {
-    echo "
-    <script>
-        alert('Something went wrong. Please try again.');
-    </script>
-    ";
-}
+$features = fetchFeatures($conn);
 ?>
-
 <!-- Navbar starts here -->
 <?php include('includes/header.php'); ?>
 <!-- navbar ends here -->
@@ -176,7 +159,6 @@ if ($result === true) {
         </div>
     </div>
 </section>
-
 <!-- our therapy section ends here -->
 
 
@@ -191,12 +173,10 @@ if ($result === true) {
 
         <?php foreach ($whyChooseList as $item): ?>
             <?php if ($item['status'] == 1): ?>
-
-                <div class="bg-white shadow-sm rounded-xl p-8 text-center border border-gray-100">
-
-                    <!-- ICON -->
-                    <div class="flex justify-center mb-4 text-teal-500">
-                        <?= $item['icon']; ?>
+                <div class="bg-white shadow rounded-xl p-8 text-center border border-gray-100">
+                    <div class="flex justify-center">
+                        <img src="admin/uploads/icon/<?= $item['icon']; ?>" alt="<?= $item['icon']; ?>"
+                            class="rounded-xl mb-6 h-12 w-12 object-cover"/>
                     </div>
 
                     <!-- TITLE -->
@@ -208,6 +188,7 @@ if ($result === true) {
                     <p class="text-gray-600">
                         <?= $item['description']; ?>
                     </p>
+
 
                 </div>
 
@@ -229,12 +210,11 @@ if ($result === true) {
         <?php if (!empty($teams)): ?>
             <?php foreach ($teams as $team): ?>
                 <div>
-                    <img src="admin/uploads/team/<?= htmlspecialchars($team['image']); ?>"
-                        alt="<?= htmlspecialchars($team['name']); ?>"
+                    <img src="admin/uploads/team/<?= $team['image']; ?>" alt="<?= $team['name']; ?>"
                         class="w-48 h-48 mx-auto rounded-full shadow-md object-cover">
 
                     <h3 class="mt-6 text-lg font-medium text-gray-800">
-                        <?= htmlspecialchars($team['name']); ?>
+                        <?= $team['name']; ?>
                     </h3>
                 </div>
             <?php endforeach; ?>
@@ -250,45 +230,50 @@ if ($result === true) {
 
 <!-- Our Features section starts here  -->
 <section class="py-12 bg-white">
-    <h2 class="text-center text-4xl font-semibold mb-10  text-[#7b61ff]">Our Features</h2>
+    <div class="container mx-auto px-6">
 
-    <div class="container mx-auto px-6 grid md:grid-cols-3 gap-10">
+        <!-- Section Title -->
+        <h2 class="text-center text-4xl font-semibold mb-10 text-[#7b61ff]">
+            Our Features
+        </h2>
 
-        <!-- Card 1 -->
-        <div class="bg-white rounded-xl shadow-md overflow-hidden">
-            <img src="assest/images/feature1.png" class="w-full h-56 object-cover" alt="">
-            <div class="text-center py-5">
-                <h3 class="text-xl font-semibold  text-[#7b61ff]">Advanced Treatment</h3>
-                <p class="text-gray-600 mt-1">
-                    Modern diagnostics & personalized protocols.
+        <!-- Cards Wrapper -->
+        <div class="grid md:grid-cols-3 gap-10">
+
+            <?php if (!empty($features)): ?>
+                <?php foreach ($features as $feature): ?>
+
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+
+                        <!-- Image -->
+                        <img src="admin/uploads/features/<?= $feature['image']; ?>" alt="<?= $feature['title']; ?>"
+                            class="w-full h-56 object-cover">
+
+                        <!-- Content -->
+                        <div class="text-center py-5 px-4">
+                            <h3 class="text-xl font-semibold text-[#7b61ff]">
+                                <?= $feature['title']; ?>
+                            </h3>
+
+                            <p class="text-gray-600 mt-2">
+                                <?= $feature['description']; ?>
+                            </p>
+                        </div>
+
+                    </div>
+
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class="col-span-3 text-center text-gray-500">
+                    No features available.
                 </p>
-            </div>
-        </div>
+            <?php endif; ?>
 
-        <!-- Card 2 -->
-        <div class="bg-white rounded-xl shadow-md overflow-hidden">
-            <img src="assest/images/hero.jpg" class="w-full h-56 object-cover" alt="">
-            <div class="text-center py-5">
-                <h3 class="text-xl font-semibold  text-[#7b61ff]">Certified Doctors</h3>
-                <p class="text-gray-600 mt-1">
-                    Experienced and qualified homeopathy & naturopathy doctors.
-                </p>
-            </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="bg-white rounded-xl shadow-md overflow-hidden">
-            <img src="assest/images/feature3.jpg" class="w-full h-56 object-cover" alt="">
-            <div class="text-center py-5">
-                <h3 class="text-xl font-semibold  text-[#7b61ff]">Natural Healing</h3>
-                <p class="text-gray-600 mt-1">
-                    Natural therapies focused on safety and results.
-                </p>
-            </div>
         </div>
 
     </div>
 </section>
+
 <!-- Our Features section starts here  -->
 
 <!-- contact us section starts here  -->
@@ -303,28 +288,25 @@ if ($result === true) {
             <div class="bg-white p-8 rounded-lg shadow">
                 <h3 class="text-xl font-semibold mb-6">Send us a message</h3>
 
-                <form method="POST" action="">
-                    <!-- Name -->
-                    <label class="block mb-2 font-medium">Name</label>
-                    <input type="text" name="name" placeholder="Your Name" required
-                        class="w-full px-4 py-3 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <!-- Name -->
+                <label class="block mb-2 font-medium">Name</label>
+                <input type="text" placeholder="Your Name"
+                    class="w-full px-4 py-3 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
 
-                    <!-- Email -->
-                    <label class="block mb-2 font-medium">Email</label>
-                    <input type="email" name="email" placeholder="Your Email" required
-                        class="w-full px-4 py-3 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <!-- Email -->
+                <label class="block mb-2 font-medium">Email</label>
+                <input type="email" placeholder="Your Email"
+                    class="w-full px-4 py-3 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
 
-                    <!-- Message -->
-                    <label class="block mb-2 font-medium">Message</label>
-                    <textarea name="message" rows="5" placeholder="Your Message" required
-                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                <!-- Message -->
+                <label class="block mb-2 font-medium">Message</label>
+                <textarea rows="5" placeholder="Your Message"
+                    class="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
 
-                    <!-- Button -->
-                    <button type="submit" name="send_message"
-                        class="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md font-semibold">
-                        Send Message
-                    </button>
-                </form>
+                <!-- Button -->
+                <button class="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md font-semibold">
+                    Send Message
+                </button>
             </div>
 
             <!-- Right : Contact Info -->

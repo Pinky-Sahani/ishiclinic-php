@@ -86,5 +86,22 @@ function fetchFeatures($conn)
     }
 }
 
+function fetchContacts($conn)
+{
+    try {
+        $sql = "SELECT * FROM contact ORDER BY id DESC";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    } catch (PDOException $e) {
+        return [];
+    }
+}
+
+
+
+
+
 
 

@@ -40,12 +40,12 @@ $therapies = fetchTherapies($conn);
                         <!-- STICKY TABLE HEADER -->
                         <thead class="bg-gray-200 sticky top-0 z-20 shadow-sm">
                             <tr>
-                                <th class="border p-3 text-center whitespace-nowrap">Sr No</th>
-                                <th class="border p-3 text-center">Image</th>
-                                <th class="border p-3 text-center">Title</th>
-                                <th class="border p-3 text-center hidden md:table-cell">Description</th>
-                                <th class="border p-3 text-center">Status</th>
-                                <th class="border p-3 text-center">Action</th>
+                                <th class="border p-1 text-center whitespace-nowrap">Sr No</th>
+                                <th class="border p-1 text-center">Image</th>
+                                <th class="border p-1 text-center">Title</th>
+                                <th class="border p-1 text-center hidden md:table-cell">Description</th>
+                                <th class="border p-1 text-center">Status</th>
+                                <th class="border p-1 text-center">Action</th>
                             </tr>
                         </thead>
 
@@ -53,31 +53,31 @@ $therapies = fetchTherapies($conn);
                             <?php foreach ($therapies as $index => $therapy): ?>
                                 <tr class="hover:bg-gray-50 transition text-center">
 
-                                    <td class="border p-3">
+                                    <td class="border p-1">
                                         <?= $index + 1 ?>
                                     </td>
 
-                                    <td class="border p-3">
+                                    <td class="border p-1">
                                         <img src="../uploads/therapies/<?= $therapy['image']; ?>"
                                             class="w-16 sm:w-20 md:w-24 rounded mx-auto">
                                     </td>
 
-                                    <td class="border p-3 font-medium whitespace-nowrap">
+                                    <td class="border p-1 font-medium whitespace-nowrap">
                                         <?= $therapy['title']; ?>
                                     </td>
 
-                                    <td class="border p-3 hidden md:table-cell max-w-xs truncate">
+                                    <td class="border p-1 hidden md:table-cell max-w-xs truncate">
                                         <?= $therapy['description']; ?>
                                     </td>
 
-                                    <td class="border p-3">
+                                    <td class="border p-1">
                                         <span
                                             class="font-semibold <?= $therapy['status'] == 1 ? 'text-green-600' : 'text-red-600'; ?>">
                                             <?= $therapy['status'] == 1 ? 'Active' : 'Inactive'; ?>
                                         </span>
                                     </td>
 
-                                    <td class="border p-3">
+                                    <td class="border p-1">
                                         <div class="flex flex-col sm:flex-row gap-2 justify-center">
                                             <a href="update_therapy.php?id=<?= $therapy['id']; ?>"
                                                 class="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 rounded text-center transition">

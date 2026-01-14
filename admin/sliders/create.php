@@ -35,7 +35,7 @@ if ($isInsert) {
             </div>
 
             <!-- FORM -->
-            <form action="" method="POST" enctype="multipart/form-data" class="max-w-xl">
+            <form action="" method="POST" enctype="multipart/form-data" >
 
                 <label class="block mb-2 font-medium mt-4">Title</label>
                 <input type="text" name="title" class="w-full border p-2 mb-4 rounded" required>
@@ -47,7 +47,7 @@ if ($isInsert) {
                 <textarea name="description" class="w-full border p-2 mb-4 rounded" rows="4"></textarea>
 
                 <label class="block mb-2 font-medium">Image</label>
-                <input type="file" name="image" class="w-full mb-4" required>
+                <input type="file" name="image" class="w-full mb-4    w-full border border-gray-300 rounded-lg p-2" required>
 
                 <label class="block mb-2 font-medium">Status</label>
                 <select name="status" class="w-full border p-2 mb-6 rounded">

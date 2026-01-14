@@ -36,7 +36,7 @@ if ($isInsert) {
 
             <!-- FORM -->
             <form method="POST" enctype="multipart/form-data"
-                  class="max-w-3xl space-y-6">
+                  class="space-y-6">
 
                 <!-- Feature Title -->
                 <div>

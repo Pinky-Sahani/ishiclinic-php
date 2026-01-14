@@ -42,7 +42,7 @@ if (!$feature) {
 
             <!-- FORM -->
             <form method="POST" enctype="multipart/form-data"
-                  class="max-w-3xl space-y-5">
+                  class=" space-y-5">
 
                 <!-- Title -->
                 <div>

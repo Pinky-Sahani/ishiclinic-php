@@ -45,7 +45,7 @@ if (!$choose) {
             </div>
 
             <!-- FORM -->
-            <form method="POST" class="max-w-xl mt-6 space-y-4">
+            <form method="POST" class=" mt-6 space-y-4">
 
                 <!-- TITLE -->
                 <div>

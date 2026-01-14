@@ -5,7 +5,7 @@
 </div>
 <!-- SIDEBAR -->
 <aside id="sidebar"
-       class="fixed md:static top-0 left-0 w-full md:w-64 h-auto md:h-screen
+       class="fixed md:static top-0 left-0 w-full md:w-64 h-auto 
               bg-slate-900 text-white
               transform -translate-y-full md:translate-y-0
               transition-transform duration-300 z-50">
@@ -55,6 +55,12 @@
                 <a href="../ourfeatures/manage_ourfeatures.php"
                    class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-700">
                     💆 <span>Our Features</span>
+                </a>
+            </li>
+              <li>
+                <a href="../contactUs/manage_contactUs.php"
+                   class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-700">
+                    💆 <span>Contact Us</span>
                 </a>
             </li>
 

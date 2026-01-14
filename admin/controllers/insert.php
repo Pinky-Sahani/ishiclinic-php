@@ -89,18 +89,29 @@ function insertWhyChooseUs($conn)
         }
 
         $title = $_POST['title'];
-        $icon = $_POST['icon'];
         $description = $_POST['description'];
         $status = $_POST['status'];
 
-        $sql = "INSERT INTO chooseus (title, icon, description, status)
-                VALUES (:title, :icon, :description, :status)";
+
+        // Image upload
+        $imageName = $_FILES['icon']['name'];
+        $tmpName = $_FILES['icon']['tmp_name'];
+
+
+
+
+        move_uploaded_file($tmpName, "../uploads/icon/" . $imageName);
+
+        $sql = "INSERT INTO chooseus (title, description, icon, status)
+                VALUES (:title, :description, :icon, :status)";
+
+
 
         $stmt = $conn->prepare($sql);
 
         $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':icon', $icon);
         $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':icon', $imageName);
         $stmt->bindParam(':status', $status, PDO::PARAM_INT);
 
         $stmt->execute();
@@ -174,7 +185,7 @@ function insertFeature($conn)
         if (!empty($_FILES['image']['name'])) {
 
             $imageName = time() . '_' . $_FILES['image']['name'];
-            $tmpName   = $_FILES['image']['tmp_name'];
+            $tmpName = $_FILES['image']['tmp_name'];
 
             move_uploaded_file($tmpName, "../uploads/features/" . $imageName);
         }
@@ -201,5 +212,61 @@ function insertFeature($conn)
 
 
 
+function insertContact($conn)
+{
+    try {
+
+        // Check submit button
+        if (!isset($_POST['savecontact'])) {
+            return false;
+        }
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $message = $_POST['message'];
+
+        $sql = "INSERT INTO contact (name, email, message)
+                VALUES (:name, :email, :message, )";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':message', $message);
+        $stmt->execute();
+        return true;
+
+    } catch (PDOException $e) {
+        echo "Contact Insert Error: " . $e->getMessage();
+        return false;
+    }
+}
 
 
+
+function insertContactMessage($conn)
+{
+    if (!isset($_POST['send_message'])) {
+        return false;
+    }
+
+    try {
+        $name = trim($_POST['name']);
+        $email = trim($_POST['email']);
+        $message = trim($_POST['message']);
+
+        $sql = "INSERT INTO contact (name, email, message)
+                VALUES (:name, :email, :message)";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':message', $message);
+
+        if ($stmt->execute()) {
+            return true;   
+        }
+
+        return false;      
+
+    } catch (PDOException $e) {
+        return false;
+    }
+}

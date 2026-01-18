@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../config/smtp.php';
 
 function insertSlider($conn)
 {
@@ -212,35 +213,6 @@ function insertFeature($conn)
 
 
 
-function insertContact($conn)
-{
-    try {
-
-        // Check submit button
-        if (!isset($_POST['savecontact'])) {
-            return false;
-        }
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $message = $_POST['message'];
-
-        $sql = "INSERT INTO contact (name, email, message)
-                VALUES (:name, :email, :message, )";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':message', $message);
-        $stmt->execute();
-        return true;
-
-    } catch (PDOException $e) {
-        echo "Contact Insert Error: " . $e->getMessage();
-        return false;
-    }
-}
-
-
-
 function insertContactMessage($conn)
 {
     if (!isset($_POST['send_message'])) {
@@ -261,10 +233,26 @@ function insertContactMessage($conn)
         $stmt->bindParam(':message', $message);
 
         if ($stmt->execute()) {
-            return true;   
+
+            // SEND EMAIL
+            $subject = "Thank you for contacting us";
+
+            $body = "
+                <h3>Hello $name 👋</h3>
+                <p>We have received your message.</p>
+                <p><b>Your Message:</b></p>
+                <p>$message</p>
+                <br>
+                <p>Regards,<br>Ishi Clinic Team</p>
+            ";
+
+            smtp_mailer($email, $subject, $body);
+
+            return true;
         }
 
-        return false;      
+        return false;
+
 
     } catch (PDOException $e) {
         return false;

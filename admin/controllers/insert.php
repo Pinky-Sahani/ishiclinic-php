@@ -248,9 +248,9 @@ function insertContactMessage($conn)
     }
 
     try {
-        $name = trim($_POST['name']);
-        $email = trim($_POST['email']);
-        $message = trim($_POST['message']);
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $message = $_POST['message'];
 
         $sql = "INSERT INTO contact (name, email, message)
                 VALUES (:name, :email, :message)";

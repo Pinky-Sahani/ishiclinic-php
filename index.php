@@ -7,20 +7,11 @@ $whyChooseList = fetchWhyChooseUs($conn);
 $teams = fetchTeam($conn);
 
 require_once('admin/controllers/insert.php');
-$result = insertContactMessage($conn);
-if ($result === true) {
-    echo "
-    <script>
-        alert('Thank you! Your message has been sent successfully.');
-        window.location.href = window.location.href;
-    </script>
-    ";
-} elseif ($result === false && isset($_POST['send_message'])) {
-    echo "
-    <script>
-        alert('Something went wrong. Please try again.');
-    </script>
-    ";
+// Call function
+$isInsert = insertContactMessage($conn);
+if ($isInsert) {
+    header("Location: index.php");
+    exit;
 }
 ?>
 
@@ -195,8 +186,9 @@ if ($result === true) {
                 <div class="bg-white shadow-sm rounded-xl p-8 text-center border border-gray-100">
 
                     <!-- ICON -->
-                    <div class="flex justify-center mb-4 text-teal-500">
-                        <?= $item['icon']; ?>
+                    <div class="flex justify-center">
+                        <img src="admin/uploads/icon/<?= $item['icon']; ?>" alt="<?= $item['icon']; ?>"
+                            class="rounded-xl mb-6 h-12 w-12 object-cover"/>
                     </div>
 
                     <!-- TITLE -->

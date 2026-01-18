@@ -23,7 +23,6 @@ $contacts = fetchContacts($conn);
                     Contact Messages
                 </h2>
             </div>
-
             <!-- TABLE WRAPPER -->
             <div class="relative bg-white h-[calc(100vh-200px)] overflow-hidden">
 
@@ -69,7 +68,7 @@ $contacts = fetchContacts($conn);
                                         <div class="flex flex-col sm:flex-row gap-2 justify-center">
 
                                             <!-- DELETE -->
-                                            <a href="delete_contact.php?id=<?= $contact['id']; ?>"
+                                            <a href="delete_contactUs.php?id=<?= $contact['id']; ?>"
                                                onclick="return confirm('Are you sure you want to delete this message?');"
                                                class="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 rounded transition">
                                                 Delete

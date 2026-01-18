@@ -98,6 +98,21 @@ function deleteFeature($conn, $id)
     return false;
 }
 
+function deleteContactMessage($conn, $id)
+{
+    try {
+        $sql = "DELETE FROM contact WHERE id = :id";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            header("Location: manage_contactUs.php");
+            exit;
+        }
+    } catch (PDOException $e) {
+        die("Unable to delete contact message");
+    }
+}
 
 
 

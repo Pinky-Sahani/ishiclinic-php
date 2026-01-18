@@ -64,14 +64,14 @@ $whyChooseList = fetchWhyChooseUs($conn);
 
                                         <td class="border p-1">
                                             <img src="../uploads/icon/<?= $row['icon']; ?>"
-                                                class="w-16 h-16 rounded mx-auto">
+                                                class="w-16 h-16 rounded mx-auto ">
                                         </td>
 
-                                        <td class="border p-1 font-medium whitespace-nowrap">
+                                        <td class="border p-1 font-medium whitespace-nowrap text-center">
                                             <?= $row['title'] ?>
                                         </td>
 
-                                        <td class="border p-1 hidden md:table-cell max-w-xs truncate">
+                                        <td class="border p-1 hidden md:table-cell max-w-xs truncate text-center">
                                             <?= $row['description'] ?>
                                         </td>
 

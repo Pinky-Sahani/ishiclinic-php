@@ -215,6 +215,7 @@ function insertFeature($conn)
 
 function insertContactMessage($conn)
 {
+    $dummy_email = "pinkysahaniups1999@gmail.com";
     if (!isset($_POST['send_message'])) {
         return false;
     }
@@ -246,7 +247,7 @@ function insertContactMessage($conn)
                 <p>Regards,<br>Ishi Clinic Team</p>
             ";
 
-            smtp_mailer($email, $subject, $body);
+            smtp_mailer($dummy_email, $subject, $body);
 
             return true;
         }

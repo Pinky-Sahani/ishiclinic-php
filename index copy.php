@@ -7,27 +7,11 @@ $whyChooseList = fetchWhyChooseUs($conn);
 $teams = fetchTeam($conn);
 
 require_once('admin/controllers/insert.php');
-
-// // Call function
-// $isInsert = insertContactMessage($conn);
-// if ($isInsert) {
-//     header("Location: index.php");
-//     exit;
-// }
-
-
-$result = [
-    'status' => false,
-    'errors' => []
-];
-
-if (isset($_POST['send_message'])) {
-    $result = insertContactMessage($conn);
-
-    if ($result['status'] === true) {
-        header("Location: index.php?success=1");
-        exit;
-    }
+// Call function
+$isInsert = insertContactMessage($conn);
+if ($isInsert) {
+    header("Location: index.php");
+    exit;
 }
 ?>
 
@@ -204,7 +188,7 @@ if (isset($_POST['send_message'])) {
                     <!-- ICON -->
                     <div class="flex justify-center">
                         <img src="admin/uploads/icon/<?= $item['icon']; ?>" alt="<?= $item['icon']; ?>"
-                            class="rounded-xl mb-6 h-12 w-12 object-cover" />
+                            class="rounded-xl mb-6 h-12 w-12 object-cover"/>
                     </div>
 
                     <!-- TITLE -->
@@ -299,8 +283,7 @@ if (isset($_POST['send_message'])) {
 </section>
 <!-- Our Features section starts here  -->
 
-
- <!-- contact us section starts here  -->
+<!-- contact us section starts here  -->
 <section class="py-16 bg-gray-100">
     <div class="container mx-auto px-6 lg:px-20">
         <!-- Heading -->
@@ -311,29 +294,29 @@ if (isset($_POST['send_message'])) {
             <!-- Left : Contact Form -->
             <div class="bg-white p-8 rounded-lg shadow">
                 <h3 class="text-xl font-semibold mb-6">Send us a message</h3>
-                <form method="POST" action="" onsubmit="return validateForm();">
+
+                <form method="POST" action="">
                     <!-- Name -->
                     <label class="block mb-2 font-medium">Name</label>
-                    <input type="text" name="name" id="name" placeholder="Your Name"
-                        class="w-full px-4 py-3 mb-4 border rounded-md"  value="<?= $_POST['name'] ?? '' ?>" />
+                    <input type="text" name="name" placeholder="Your Name" required
+                        class="w-full px-4 py-3 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
 
                     <!-- Email -->
                     <label class="block mb-2 font-medium">Email</label>
-                    <input type="email" name="email" id="email" placeholder="Your Email"
-                        class="w-full px-4 py-3 mb-4 border rounded-md" value="<?= $_POST['email'] ?? '' ?>">
+                    <input type="email" name="email" placeholder="Your Email" required
+                        class="w-full px-4 py-3 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
 
                     <!-- Message -->
                     <label class="block mb-2 font-medium">Message</label>
-                    <textarea name="message" id="message" rows="5"
-                        class="w-full px-4 py-3 border rounded-md"><?= $_POST['message'] ?? '' ?></textarea>
+                    <textarea name="message" rows="5" placeholder="Your Message" required
+                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
 
                     <!-- Button -->
                     <button type="submit" name="send_message"
-                        class="w-full mt-6 bg-blue-600 text-white py-3 rounded-md">
+                        class="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md font-semibold">
                         Send Message
                     </button>
                 </form>
-
             </div>
 
             <!-- Right : Contact Info -->
@@ -381,25 +364,6 @@ if (isset($_POST['send_message'])) {
 
             </div>
         </div>
-
-       
-        <!-- SUCCESS MESSAGE -->
-        <?php if (isset($_GET['success'])): ?>
-            <div class="bg-green-100 text-green-700 p-4 mb-6 rounded">
-                ✅ Thank you! Your message has been sent successfully.
-            </div>
-        <?php endif; ?>
-
-        <!-- VALIDATION ERRORS -->
-        <?php if (!empty($result['errors'])): ?>
-            <div class="bg-red-100 text-red-700 p-4 mb-6 rounded">
-                <ul class="list-disc ml-5">
-                    <?php foreach ($result['errors'] as $error): ?>
-                        <li><?= htmlspecialchars($error) ?></li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-        <?php endif; ?>
     </div>
 </section>
 <!-- contact us section ends here  -->
@@ -446,57 +410,7 @@ if (isset($_POST['send_message'])) {
     }, 5000);
 
     showSlide(index);
-
     // carousel script ends here
-
-    // form validation start here   
-
-
-    function validateForm() {
-        let name = document.getElementById("name").value.trim();
-        let email = document.getElementById("email").value.trim();
-        let message = document.getElementById("message").value.trim();
-
-        // Name check
-        if (name === "") {
-            alert("Name is required");
-            return false;
-        }
-
-        // Email check
-        let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,}$/i;
-        if (email === "") {
-            alert("Email is required");
-            return false;
-        }
-        if (!emailPattern.test(email)) {
-            alert("Enter a valid email address");
-            return false;
-        }
-
-        // Message check
-        if (message === "") {
-            alert("Message is required");
-            return false;
-        }
-        if (message.length < 10) {
-            alert("Message must be at least 10 characters");
-            return false;
-        }
-
-        return true; // form submit allowed
-    }
-
-
-    // form validation ends here    
-
-
-
-
-
-
-
-
 </script>
 
 </body>

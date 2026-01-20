@@ -6,7 +6,7 @@ $therapies = fetchTherapies($conn);
 $whyChooseList = fetchWhyChooseUs($conn);
 $teams = fetchTeam($conn);
 
-require_once('admin/controllers/insert.php');
+require_once('user_interaction/controllers/insert.php');
 
 // // Call function
 // $isInsert = insertContactMessage($conn);
@@ -382,7 +382,7 @@ if (isset($_POST['send_message'])) {
             </div>
         </div>
 
-       
+    
         <!-- SUCCESS MESSAGE -->
         <?php if (isset($_GET['success'])): ?>
             <div class="bg-green-100 text-green-700 p-4 mb-6 rounded">

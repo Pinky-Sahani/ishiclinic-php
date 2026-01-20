@@ -1,8 +1,15 @@
 <?php
 include_once __DIR__ . '/../smtp/PHPMailerAutoload.php';
+global $username, $password, $name;
+
 
 function smtp_mailer($to, $subject, $msg)
 {
+    $username = "pinkysahani.dev@gmail.com";
+    $password = "vdilwxqpvhogmcma";
+    $name = "Ishiclinic"; 
+
+
     $mail = new PHPMailer();
     $mail->IsSMTP();
     $mail->SMTPAuth = true;
@@ -11,12 +18,10 @@ function smtp_mailer($to, $subject, $msg)
     $mail->Port = 587;
     $mail->IsHTML(true);
     $mail->CharSet = 'UTF-8';
-
     // SMTP Credentials
-    $mail->Username = "pinkysahani.dev@gmail.com";
-    $mail->Password = "vdilwxqpvhogmcma";
-
-    $mail->SetFrom("pinkysahani.dev@gmail.com", "Ishiclinic");
+    $mail->Username = $username;
+    $mail->Password = $password;
+    $mail->SetFrom($username, $name);
     $mail->Subject = $subject;
     $mail->Body = $msg;
     $mail->AddAddress($to);

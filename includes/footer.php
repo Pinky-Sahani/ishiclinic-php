@@ -45,7 +45,7 @@
                     ✉️ support@ishiclinic.com
                 </p>
 
-                <p class="flex items-center gap-2">
+                <p  class="flex items-center gap-2">
                     🕒 Mon–Sat: 9:00 AM – 8:00 PM
                 </p>
                 <p class="flex items-center gap-2">
@@ -80,18 +80,21 @@
 
     <!-- Bottom Bar -->
     <div class="border-t border-white/20 mt-10 pt-4 text-center text-sm">
-        © 2025 Ishi Advance Homoeo & Naturopathic Center • Website Designed & Developed by
+        © <span id="currentYear">2026</span> Ishi Advance Homoeo & Naturopathic Center • Website Designed & Developed by
         <span class="font-semibold">UMID Infotech</span>
     </div>
 </footer>
 <script>
-        // toggle mobile menu script starts here
-        const btn = document.getElementById("menuBtn");
-        const menu = document.getElementById("mobileMenu");
+    // Update year dynamically
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
 
-        btn.addEventListener("click", function () {
-            menu.classList.toggle("hidden");
-        });
+    // toggle mobile menu script starts here
+    const btn = document.getElementById("menuBtn");
+    const menu = document.getElementById("mobileMenu");
 
-        // toggle mobile menu script ends here
+    btn.addEventListener("click", function () {
+        menu.classList.toggle("hidden");
+    });
+
+    // toggle mobile menu script ends here
 </script>

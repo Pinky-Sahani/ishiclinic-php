@@ -446,12 +446,10 @@ if (isset($_POST['send_message'])) {
     }, 5000);
 
     showSlide(index);
-
     // carousel script ends here
 
+
     // form validation start here   
-
-
     function validateForm() {
         let name = document.getElementById("name").value.trim();
         let email = document.getElementById("email").value.trim();
@@ -487,15 +485,7 @@ if (isset($_POST['send_message'])) {
         return true; // form submit allowed
     }
 
-
     // form validation ends here    
-
-
-
-
-
-
-
 
 </script>
 

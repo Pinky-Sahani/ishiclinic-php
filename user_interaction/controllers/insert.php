@@ -57,15 +57,15 @@ function insertContactMessage($conn)
             // 📧 Send Email
             $subject = "Thank you for contacting us";
 
-            $body = "
-                <h3>Hello $name 👋</h3>
-                <p>We have received your message.</p>
-                <p><b>Your Message:</b></p>
-                <p>$message</p>
-                <br>
-                <p>Regards,<br>Ishi Clinic Team</p>
-            ";
+             //  Load email template
+            $templatePath = __DIR__ . '/../email_template/email_template.html';
+            $body = file_get_contents($templatePath);
 
+            //  Replace placeholders
+            $body = str_replace('{{name}}', htmlspecialchars($name), $body);
+            $body = str_replace('{{message}}', nl2br(htmlspecialchars($message)), $body);
+            $body = str_replace('{{action_url}}', 'https://ishiclinic.com', $body);
+            
             smtp_mailer($email, $subject, $body);
 
             return [

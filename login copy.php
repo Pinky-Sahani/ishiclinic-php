@@ -1,6 +1,9 @@
 <?php
 
 session_start();
+// session_destroy();
+// print_r($_SESSION);
+// exit;
 require_once('connect.php');
 
 if (isset($_POST['login'])) {
@@ -12,14 +15,14 @@ if (isset($_POST['login'])) {
     $stmt->bindParam(':email', $email, PDO::PARAM_STR);
     $stmt->execute();
 
-    // ✅ PDO way to get data
+    //  PDO way to get data
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     // print_r($user);
     if ($user && password_verify($password, $user['password'])) {
 
         $_SESSION['email'] = $user['email'];
         $_SESSION['role'] = $user['role'];
-        $_SESSION['name'] = $user['name']; // ✅ store name
+        $_SESSION['name'] = $user['name'];
 
 
         if ($user['role'] === 'admin') {
@@ -41,7 +44,6 @@ if (isset($_POST['login'])) {
 
 <head>
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Login page</title>
 </head>
 
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">

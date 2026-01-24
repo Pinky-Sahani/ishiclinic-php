@@ -26,7 +26,6 @@ if (isset($_POST['register'])) {
 
 <head>
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Register page</title>
 </head>
 
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
@@ -40,7 +39,7 @@ if (isset($_POST['register'])) {
 
         <select name="role" class="w-full mb-4 p-2 border rounded">
             <option value="user">User</option>
-            <option value="admin">master</option>
+            <option value="admin">Admin</option>
         </select>
 
         <input type="password" name="password" placeholder="Password" required class="w-full mb-4 p-2 border rounded">

@@ -18,7 +18,7 @@
             </button>
 
             <li>
-                <a href="#"
+                <a href="../dashboard/admin_dashboard.php"
                    class="flex items-center gap-2 px-4 py-2 rounded bg-slate-700">
                     📊 <span>Dashboard</span>
                 </a>

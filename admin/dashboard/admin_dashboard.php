@@ -41,48 +41,59 @@ $masters = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
 
         <!-- DASHBOARD CONTENT -->
-        <div class="bg-white h-full rounded shadow  justify-center text-gray-800">
-            <div class="bg-white rounded shadow p-6">
-                <h3 class="text-lg font-semibold mb-4 text-gray-700">
+        <div class="bg-white h-full rounded shadow text-gray-800">
+
+            <div class="bg-white rounded shadow p-4 sm:p-6">
+                <h3 class="text-base sm:text-lg font-semibold mb-4 text-gray-700">
                     Master Users List
                 </h3>
 
-                <table class="w-full border border-gray-200">
-                    <thead class="bg-gray-100">
-                        <tr>
-                            <th class="border px-4 py-2 text-left">Name</th>
-                            <th class="border px-4 py-2 text-left">Email</th>
-                            <th class="border px-4 py-2 text-left">Role</th>
-                        </tr>
-                    </thead>
+                <!-- RESPONSIVE TABLE WRAPPER -->
+                <div class="overflow-x-auto">
+                    <table class="min-w-full border border-gray-200 text-sm sm:text-base">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="border px-3 sm:px-4 py-2 text-center whitespace-nowrap">
+                                    Name
+                                </th>
+                                <th class="border px-3 sm:px-4 py-2 text-center whitespace-nowrap">
+                                    Email
+                                </th>
+                                <th class="border px-3 sm:px-4 py-2 text-center whitespace-nowrap">
+                                    Role
+                                </th>
+                            </tr>
+                        </thead>
 
-                    <tbody>
-                        <?php if ($masters): ?>
-                            <?php foreach ($masters as $user): ?>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="border px-4 py-2">
-                                        <?= htmlspecialchars($user['name']) ?>
-                                    </td>
-                                    <td class="border px-4 py-2">
-                                        <?= htmlspecialchars($user['email']) ?>
-                                    </td>
-                                    <td class="border px-4 py-2 text-green-600 font-semibold">
-                                        <?= $user['role'] ?>
+                        <tbody>
+                            <?php if ($masters): ?>
+                                <?php foreach ($masters as $user): ?>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="border px-3 sm:px-4 py-2 text-center whitespace-nowrap">
+                                            <?= htmlspecialchars($user['name']) ?>
+                                        </td>
+                                        <td class="border px-3 text-center sm:px-4 py-2">
+                                            <?= htmlspecialchars($user['email']) ?>
+                                        </td>
+                                        <td class="border px-3 sm:px-4 py-2 text-center text-green-600 font-semibold whitespace-nowrap">
+                                            <?= htmlspecialchars($user['role']) ?>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="3" class="text-center py-4 text-gray-400">
+                                        No master users found
                                     </td>
                                 </tr>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <tr>
-                                <td colspan="3" class="text-center py-4 text-gray-400">
-                                    No master users found
-                                </td>
-                            </tr>
-                        <?php endif; ?>
-                    </tbody>
-                </table>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
         </div>
+
 
     </main>
 </div>

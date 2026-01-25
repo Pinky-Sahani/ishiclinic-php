@@ -28,64 +28,51 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                      : 'hover:bg-slate-700'; ?>">
                     📊 <span>Dashboard</span>
                 </a>
+
+                <!-- <a href="../dashboard/admin_dashboard.php"
+                   class="flex items-center gap-2 px-4 py-2 rounded bg-slate-700">
+                    📊 <span>Dashboard</span>
+                </a> -->
             </li>
 
             <li>
-                <a href="../sliders/manage_slider.php" class="flex items-center gap-2 px-4 py-2 rounded
-   <?php echo ($currentPage == 'manage_slider.php')
-       ? 'bg-slate-700'
-       : 'hover:bg-slate-700'; ?>">
+                <a href="../sliders/manage_slider.php"
+                    class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-700">
                     📷 <span>Slider</span>
                 </a>
-
             </li>
 
             <li>
-                <a href="../ourtherapies/manage_therapy.php" class="flex items-center gap-2 px-4 py-2 rounded
-   <?php echo ($currentPage == 'manage_therapy.php')
-       ? 'bg-slate-700'
-       : 'hover:bg-slate-700'; ?>">
+                <a href="../ourtherapies/manage_therapy.php"
+                    class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-700">
                     💆 <span>Therapies</span>
                 </a>
-
             </li>
 
             <li>
-                <a href="../chooseUs/manage_chooseUs.php" class="flex items-center gap-2 px-4 py-2 rounded
-   <?php echo ($currentPage == 'manage_chooseUs.php')
-       ? 'bg-slate-700'
-       : 'hover:bg-slate-700'; ?>">
+                <a href="../chooseUs/manage_chooseUs.php"
+                    class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-700">
                     💆 <span>Why Choose Us</span>
                 </a>
-
             </li>
 
             <li>
-                <a href="../ourteam/manage_ourteam.php" class="flex items-center gap-2 px-4 py-2 rounded
-   <?php echo ($currentPage == 'manage_ourteam.php')
-       ? 'bg-slate-700'
-       : 'hover:bg-slate-700'; ?>">
+                <a href="../ourteam/manage_ourteam.php"
+                    class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-700">
                     💆 <span>Our Team</span>
                 </a>
-
             </li>
             <li>
-                <a href="../ourfeatures/manage_ourfeatures.php" class="flex items-center gap-2 px-4 py-2 rounded
-   <?php echo ($currentPage == 'manage_ourfeatures.php')
-       ? 'bg-slate-700'
-       : 'hover:bg-slate-700'; ?>">
+                <a href="../ourfeatures/manage_ourfeatures.php"
+                    class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-700">
                     💆 <span>Our Features</span>
                 </a>
-
             </li>
             <li>
-                <a href="../contactUs/manage_contactUs.php" class="flex items-center gap-2 px-4 py-2 rounded
-   <?php echo ($currentPage == 'manage_contactUs.php')
-       ? 'bg-slate-700'
-       : 'hover:bg-slate-700'; ?>">
+                <a href="../contactUs/manage_contactUs.php"
+                    class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-700">
                     💆 <span>Contact Us</span>
                 </a>
-
             </li>
 
         </ul>

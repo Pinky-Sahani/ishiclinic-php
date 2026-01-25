@@ -59,6 +59,10 @@ if (isset($_POST['login'])) {
             class="w-full bg-green-600 text-white py-2 rounded">
         Login
     </button>
+     <p class="mt-4 text-sm text-center">
+            Don't have account?
+            <a href="register.php" class="text-blue-600">Register</a>
+        </p>
 </form>
 
 </body>

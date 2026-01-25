@@ -6,10 +6,6 @@
 </footer>
 
 <script>
-
-
-
-
 function toggleSidebar() {
     document.getElementById('sidebar').classList.toggle('-translate-y-full');
     document.getElementById('overlay').classList.toggle('hidden');

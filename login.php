@@ -6,7 +6,7 @@ $error = "";
 
 if (isset($_POST['login'])) {
 
-    $email    = trim($_POST['email']);
+    $email = trim($_POST['email']);
     $password = $_POST['password'];
 
     $sql = "SELECT name, email, password, role
@@ -21,9 +21,9 @@ if (isset($_POST['login'])) {
 
     if ($user && password_verify($password, $user['password'])) {
 
-        $_SESSION['name']  = $user['name'];
+        $_SESSION['name'] = $user['name'];
         $_SESSION['email'] = $user['email'];
-        $_SESSION['role']  = $user['role'];
+        $_SESSION['role'] = $user['role'];
 
         header("Location: /ishiclinic/admin/dashboard/admin_dashboard.php");
         exit;
@@ -34,36 +34,49 @@ if (isset($_POST['login'])) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
 
-<form method="POST" class="bg-white p-8 rounded shadow w-96">
-    <h2 class="text-2xl font-bold mb-6 text-center">Master Login</h2>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center px-4">
 
-    <?php if ($error): ?>
-        <p class="text-red-500 mb-4 text-center"><?= $error ?></p>
-    <?php endif; ?>
+    <form method="POST" class="bg-white w-full max-w-sm sm:max-w-md md:max-w-lg
+                 p-6 sm:p-8 rounded-lg shadow-lg">
 
-    <input type="email" name="email" required
-           placeholder="Email"
-           class="w-full mb-4 p-2 border rounded">
+        <h2 class="text-xl sm:text-2xl font-bold mb-6 text-center">
+            Master Login
+        </h2>
 
-    <input type="password" name="password" required
-           placeholder="Password"
-           class="w-full mb-4 p-2 border rounded">
+        <?php if ($error): ?>
+            <p class="text-red-500 mb-4 text-center text-sm sm:text-base">
+                <?= $error ?>
+            </p>
+        <?php endif; ?>
 
-    <button name="login"
-            class="w-full bg-green-600 text-white py-2 rounded">
-        Login
-    </button>
-     <p class="mt-4 text-sm text-center">
+        <input type="email" name="email" required placeholder="Email"
+            class="w-full mb-4 p-2 sm:p-3 border rounded focus:outline-none focus:ring-2 focus:ring-green-500">
+
+        <input type="password" name="password" required placeholder="Password"
+            class="w-full mb-4 p-2 sm:p-3 border rounded focus:outline-none focus:ring-2 focus:ring-green-500">
+
+        <button name="login" class="w-full bg-green-600 hover:bg-green-700
+                       text-white py-2 sm:py-3 rounded transition">
+            Login
+        </button>
+
+        <p class="mt-4 text-sm sm:text-base text-center">
             Don't have account?
-            <a href="register.php" class="text-blue-600">Register</a>
+            <a href="register.php" class="text-blue-600 hover:underline">
+                Register
+            </a>
         </p>
-</form>
+
+    </form>
 
 </body>
+
 </html>

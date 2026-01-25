@@ -19,13 +19,13 @@ $masters = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <?php require_once('../adminheader.php'); ?>
 
 <!-- MAIN WRAPPER -->
-<div class="flex min-h-[calc(100vh-106px)]">
+<div class="flex min-h-[calc(100vh-106px)] ">
 
     <!-- SIDEBAR -->
     <?php require_once('../adminsidebar.php'); ?>
 
     <!-- CONTENT AREA -->
-    <main class="flex-1 p-6">
+    <main class="flex-1 p-6 overflow-hidden p-2">
 
         <!-- WELCOME BAR -->
         <div class="bg-white rounded shadow p-4 flex justify-between items-center mb-6">

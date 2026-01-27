@@ -1,33 +1,14 @@
 <?php
 require_once('connect.php');
+require_once('../ishiclinic/user_interaction/controllers/insert.php');
 
 $error = "";
 
-if (isset($_POST['register'])) {
+$isInsert = insertUser($conn);
 
-    $name = trim($_POST['name']);
-    $email = trim($_POST['email']);
-    $role = $_POST['role'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
-    $sql = "INSERT INTO user (name, email, role, password)
-            VALUES (:name, :email, :role, :password)";
-
-    $stmt = $conn->prepare($sql);
-
-    if (
-        $stmt->execute([
-            ':name' => $name,
-            ':email' => $email,
-            ':role' => $role,
-            ':password' => $password
-        ])
-    ) {
-        header("Location: login.php");
-        exit;
-    }
-
-    $error = "Registration failed";
+if ($isInsert) {
+    header("Location: login.php");
+    exit;
 }
 ?>
 

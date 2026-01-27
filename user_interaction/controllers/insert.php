@@ -86,3 +86,36 @@ function insertContactMessage($conn)
         ];
     }
 }
+
+function insertUser($conn)
+{
+    
+    try {
+
+        // Register button check
+        if (!isset($_POST['register'])) {
+            return false;
+        }
+
+        $name     = trim($_POST['name']);
+        $email    = trim($_POST['email']);
+        $role     = $_POST['role'];
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+        $sql = "INSERT INTO user (name, email, role, password)
+                VALUES (:name, :email, :role, :password)";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':role', $role);
+        $stmt->bindParam(':password', $password);
+        $stmt->execute();
+
+        return true;
+
+    } catch (PDOException $e) {
+        echo "User Insert Error: " . $e->getMessage();
+        return false;
+    }
+}

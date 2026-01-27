@@ -7,12 +7,13 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'master') {
     exit;
 }
 require_once('../../connect.php');
+require_once('../../user_interaction/controllers/fetch.php');
 // Sirf master users lao
-$sql = "SELECT name, email, role FROM user WHERE role = 'master'";
-$stmt = $conn->prepare($sql);
-$stmt->execute();
-$masters = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+// $sql = "SELECT name, email, role FROM user WHERE role = 'master'";
+// $stmt = $conn->prepare($sql);
+// $stmt->execute();
+// $masters = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$masters = fetchMasters($conn);
 ?>
 
 <?php require_once('../adminheader.php'); ?>

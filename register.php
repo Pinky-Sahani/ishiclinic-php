@@ -64,10 +64,6 @@ if (isset($_POST['register'])) {
         <!-- ROLE (fixed as master) -->
         <input type="hidden" name="role" value="master">
 
-        <!-- <select name="role" class="w-full mb-4 p-2 sm:p-3 border rounded
-                       focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <option value="master">Master</option>
-        </select> -->
 
         <input type="password" name="password" required placeholder="Password" class="w-full mb-4 p-2 sm:p-3 border rounded
                       focus:outline-none focus:ring-2 focus:ring-blue-500">

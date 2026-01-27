@@ -7,7 +7,6 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'master') {
     exit;
 }
 require_once('../../connect.php');
-
 // Sirf master users lao
 $sql = "SELECT name, email, role FROM user WHERE role = 'master'";
 $stmt = $conn->prepare($sql);
@@ -34,10 +33,7 @@ $masters = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?= htmlspecialchars($_SESSION['name']) ?>
                 </span> 👋
             </h2>
-
-            <a href="/ishiclinic/logout.php" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
-                Logout
-            </a>
+            
         </div>
 
         <!-- DASHBOARD CONTENT -->

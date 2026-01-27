@@ -29,7 +29,7 @@ if (isset($_POST['login'])) {
         exit;
     }
 
-    $error = "Only MASTER can login";
+    $error = "Invalid email or password";
 }
 ?>
 

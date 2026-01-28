@@ -1,19 +1,14 @@
 <?php
 
-session_start();
+require_once('../helpers/auth_check.php');
 
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'master') {
-    header("Location: /ishiclinic/login.php");
-    exit;
-}
 require_once('../../connect.php');
 require_once('../../user_interaction/controllers/fetch.php');
 $masters = fetchMasters($conn);
 ?>
 
 <?php if (isset($_SESSION['toast'])): ?>
-    <div id="toast"
-        class="fixed top-6 right-6 z-50
+    <div id="toast" class="fixed top-6 right-6 z-50
                px-4 py-3
                min-w-[250px] min-h-[60px]
                flex items-center justify-center
@@ -26,9 +21,6 @@ $masters = fetchMasters($conn);
 
     <?php unset($_SESSION['toast']); ?>
 <?php endif; ?>
-
-
-
 
 <?php require_once('../adminheader.php'); ?>
 

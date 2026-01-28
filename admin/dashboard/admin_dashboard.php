@@ -8,13 +8,27 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'master') {
 }
 require_once('../../connect.php');
 require_once('../../user_interaction/controllers/fetch.php');
-// Sirf master users lao
-// $sql = "SELECT name, email, role FROM user WHERE role = 'master'";
-// $stmt = $conn->prepare($sql);
-// $stmt->execute();
-// $masters = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $masters = fetchMasters($conn);
 ?>
+
+<?php if (isset($_SESSION['toast'])): ?>
+    <div id="toast"
+        class="fixed top-6 right-6 z-50
+               px-4 py-3
+               min-w-[250px] min-h-[60px]
+               flex items-center justify-center
+               text-center
+               rounded shadow-lg
+               text-white text-sm font-medium
+               <?= $_SESSION['toast']['type'] === 'success' ? 'bg-green-600' : 'bg-red-600' ?>">
+        <?= $_SESSION['toast']['message'] ?>
+    </div>
+
+    <?php unset($_SESSION['toast']); ?>
+<?php endif; ?>
+
+
+
 
 <?php require_once('../adminheader.php'); ?>
 
@@ -34,7 +48,7 @@ $masters = fetchMasters($conn);
                     <?= htmlspecialchars($_SESSION['name']) ?>
                 </span> 👋
             </h2>
-            
+
         </div>
 
         <!-- DASHBOARD CONTENT -->
@@ -72,7 +86,8 @@ $masters = fetchMasters($conn);
                                         <td class="border px-3 text-center sm:px-4 py-2">
                                             <?= htmlspecialchars($user['email']) ?>
                                         </td>
-                                        <td class="border px-3 sm:px-4 py-2 text-center text-green-600 font-semibold whitespace-nowrap">
+                                        <td
+                                            class="border px-3 sm:px-4 py-2 text-center text-green-600 font-semibold whitespace-nowrap">
                                             <?= htmlspecialchars($user['role']) ?>
                                         </td>
                                     </tr>

@@ -53,25 +53,14 @@ if (isset($_POST['login'])) {
 </head>
 
 <body class="bg-gray-100 min-h-screen flex items-center justify-center px-4">
-
-
     <?php if (isset($_SESSION['toast'])): ?>
-        <div id="toast" class="absolute top-[18%] left-1/2 z-50
-               -translate-x-1/2
-               min-w-[250px] min-h-[60px]
-               px-4 py-3
-               flex items-center justify-center
-               text-center
-               rounded shadow-lg text-white text-sm font-medium
-               <?= $_SESSION['toast']['type'] === 'success' ? 'bg-green-600' : 'bg-red-600' ?>">
+        <div id="toast" class="fixed top-5 right-5 z-50 px-4 py-3 rounded shadow-lg text-white
+         <?= $_SESSION['toast']['type'] === 'success' ? 'bg-green-600' : 'bg-red-600' ?>">
             <?= $_SESSION['toast']['message'] ?>
         </div>
 
         <?php unset($_SESSION['toast']); ?>
     <?php endif; ?>
-
-
-
 
 
     <form method="POST" class="bg-white w-full max-w-sm sm:max-w-md md:max-w-lg

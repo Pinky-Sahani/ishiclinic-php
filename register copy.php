@@ -1,31 +1,16 @@
 <?php
-session_start();
 require_once('connect.php');
 require_once('../ishiclinic/user_interaction/controllers/insert.php');
 
-if (isset($_POST['register'])) {
+$error = "";
 
-    $isInsert = insertUser($conn);
+$isInsert = insertUser($conn);
 
-    if ($isInsert) {
-        // ✅ SUCCESS TOAST (login page)
-        $_SESSION['toast'] = [
-            'type' => 'success',
-            'message' => 'Registration Successful! Please Login'
-        ];
-
-        header("Location: login.php");
-        exit;
-    } else {
-        // ❌ ERROR TOAST (same page)
-        $_SESSION['toast'] = [
-            'type' => 'error',
-            'message' => 'Registration Failed. Try Again'
-        ];
-    }
+if ($isInsert) {
+    header("Location: login.php");
+    exit;
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,15 +23,6 @@ if (isset($_POST['register'])) {
 
 <body class="bg-gray-100 min-h-screen flex items-center justify-center px-4">
 
-    <?php if (isset($_SESSION['toast'])): ?>
-        <div id="toast" class="fixed top-5 right-5 z-50 px-4 py-3 rounded shadow-lg text-white
-         <?= $_SESSION['toast']['type'] === 'success' ? 'bg-green-600' : 'bg-red-600' ?>">
-            <?= $_SESSION['toast']['message'] ?>
-        </div>
-        <?php unset($_SESSION['toast']); ?>
-    <?php endif; ?>
-
-
     <form method="POST" class="bg-white w-full max-w-sm sm:max-w-md md:max-w-lg
                  p-6 sm:p-8 rounded-lg shadow-lg">
 
@@ -54,11 +30,11 @@ if (isset($_POST['register'])) {
             Register
         </h2>
 
-        <!-- <?php if ($error): ?>
+        <?php if ($error): ?>
             <p class="text-red-500 mb-4 text-center text-sm sm:text-base">
                 <?= $error ?>
             </p>
-        <?php endif; ?> -->
+        <?php endif; ?>
 
         <input type="text" name="name" required placeholder="Name" class="w-full mb-4 p-2 sm:p-3 border rounded
                       focus:outline-none focus:ring-2 focus:ring-blue-500">

@@ -86,7 +86,7 @@ function insertContactMessage($conn)
         ];
     }
 }
-
+// register.php insert code 
 function insertUser($conn)
 {
     

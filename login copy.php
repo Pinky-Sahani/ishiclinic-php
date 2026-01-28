@@ -3,6 +3,10 @@ session_start();
 require_once('connect.php');
 require_once('../ishiclinic/user_interaction/controllers/fetch.php');
 
+$error = "";
+// $masters = fetchMasters($conn);
+// print_r($masters);
+
 if (isset($_POST['login'])) {
 
     $email = trim($_POST['email']);
@@ -24,24 +28,13 @@ if (isset($_POST['login'])) {
         $_SESSION['email'] = $user['email'];
         $_SESSION['role'] = $user['role'];
 
-        // ✅ SUCCESS TOAST
-        $_SESSION['toast'] = [
-            'type' => 'success',
-            'message' => 'Login Successful'
-        ];
-
         header("Location: /ishiclinic/admin/dashboard/admin_dashboard.php");
         exit;
     }
 
-    // ❌ ERROR TOAST
-    $_SESSION['toast'] = [
-        'type' => 'error',
-        'message' => 'Invalid Email or Password'
-    ];
+    $error = "Invalid email or password";
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,26 +47,6 @@ if (isset($_POST['login'])) {
 
 <body class="bg-gray-100 min-h-screen flex items-center justify-center px-4">
 
-
-    <?php if (isset($_SESSION['toast'])): ?>
-        <div id="toast" class="absolute top-[18%] left-1/2 z-50
-               -translate-x-1/2
-               min-w-[250px] min-h-[60px]
-               px-4 py-3
-               flex items-center justify-center
-               text-center
-               rounded shadow-lg text-white text-sm font-medium
-               <?= $_SESSION['toast']['type'] === 'success' ? 'bg-green-600' : 'bg-red-600' ?>">
-            <?= $_SESSION['toast']['message'] ?>
-        </div>
-
-        <?php unset($_SESSION['toast']); ?>
-    <?php endif; ?>
-
-
-
-
-
     <form method="POST" class="bg-white w-full max-w-sm sm:max-w-md md:max-w-lg
                  p-6 sm:p-8 rounded-lg shadow-lg">
 
@@ -81,11 +54,11 @@ if (isset($_POST['login'])) {
             Master Login
         </h2>
 
-        <!-- <?php if ($error): ?>
+        <?php if ($error): ?>
             <p class="text-red-500 mb-4 text-center text-sm sm:text-base">
                 <?= $error ?>
             </p>
-        <?php endif; ?> -->
+        <?php endif; ?>
 
         <input type="email" name="email" required placeholder="Email"
             class="w-full mb-4 p-2 sm:p-3 border rounded focus:outline-none focus:ring-2 focus:ring-green-500">
@@ -106,15 +79,6 @@ if (isset($_POST['login'])) {
         </p>
 
     </form>
-    <script>
-        const toast = document.getElementById('toast');
-        if (toast) {
-            setTimeout(() => {
-                toast.style.display = 'none';
-            }, 3000); // 3 seconds
-        }
-    </script>
-
 
 </body>
 

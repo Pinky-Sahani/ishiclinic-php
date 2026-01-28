@@ -18,6 +18,7 @@ if ($isInsert) {
     exit;
 }
 ?>
+
 <!-- MAIN WRAPPER -->
 <div class="flex min-h-[calc(100vh-106px)]">
 
@@ -29,21 +30,21 @@ if ($isInsert) {
         <div class="bg-white h-full rounded shadow p-6">
 
             <!-- Page Header -->
-
-            <div class="flex justify-between items-center gap-4 p-3 border-b bg-white sticky top-0 z-20">
+            
+                <div class="flex justify-between items-center gap-4 p-3 border-b bg-white sticky top-0 z-20">
                 <h2 class="text-lg sm:text-xl md:text-2xl font-bold">
                     Add Slider
                 </h2>
 
-
-                <a href="manage_slider.php"
+        
+               <a href="manage_slider.php"
                     class="bg-gray-600 text-white text-sm sm:text-base px-4 py-2 rounded hover:bg-gray-700 transition">
                     ← Back
                 </a>
             </div>
 
             <!-- FORM -->
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="" method="POST" enctype="multipart/form-data" >
 
                 <label class="block mb-2 font-medium mt-4">Title</label>
                 <input type="text" name="title" class="w-full border p-2 mb-4 rounded" required>
@@ -55,8 +56,7 @@ if ($isInsert) {
                 <textarea name="description" class="w-full border p-2 mb-4 rounded" rows="4"></textarea>
 
                 <label class="block mb-2 font-medium">Image</label>
-                <input type="file" name="image" class="w-full mb-4    w-full border border-gray-300 rounded-lg p-2"
-                    required>
+                <input type="file" name="image" class="w-full mb-4    w-full border border-gray-300 rounded-lg p-2" required>
 
                 <label class="block mb-2 font-medium">Status</label>
                 <select name="status" class="w-full border p-2 mb-6 rounded">

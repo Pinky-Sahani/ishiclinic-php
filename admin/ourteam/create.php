@@ -1,16 +1,33 @@
 <?php
-require_once('../helpers/auth_check.php');
-require_once('../../connect.php');
 
+
+require_once('../helpers/auth_check.php');
+require_once('../helpers/toast.php'); // ✅ toast helper
+require_once('../../connect.php');
 require_once('../adminheader.php');
 require_once('../controllers/insert.php');
 
-$isInsert = insertTeam($conn);
-if ($isInsert) {
-    header("Location: manage_ourteam.php");
-    exit;
+// ✅ Run only when form is submitted
+if (isset($_POST['saveteam'])) {
+
+    $isInsert = insertTeam($conn);
+
+    if ($isInsert) {
+        redirectWithToast(
+            'manage_ourteam.php',
+            'success',
+            'Team member added successfully'
+        );
+    } else {
+        redirectWithToast(
+            'manage_ourteam.php',
+            'error',
+            'Team member insert failed'
+        );
+    }
 }
 ?>
+
 
 <!-- MAIN WRAPPER -->
 <div class="flex min-h-[calc(100vh-106px)]">

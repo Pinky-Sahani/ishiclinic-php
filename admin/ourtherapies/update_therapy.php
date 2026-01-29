@@ -5,50 +5,32 @@ require_once('../adminheader.php');
 require_once('../controllers/update.php');
 
 /* CHECK ID */
-// if (!isset($_GET['id'])) {
-//     redirectWithToast(
-//         'manage_therapy.php',
-//         'error',
-//         'Therapy ID missing'
-//     );
-// }
-
-// $id = (int) $_GET['id'];
-
-
-//     $therapy = updateTherapy($conn, $id);
-//     echo $id;
-//     print_r( $therapy);
-//     if ($therapy) {
-//         redirectWithToast(
-//             'manage_therapy.php',
-//             'success',
-//             'Therapy updated successfully'
-//         );
-//     } else {
-//         redirectWithToast(
-//             'manage_therapy.php',
-//             'error',
-//             'Therapy update failed'
-//         );
-//     }
-
-// print_r($therapy);
-
-
-// Check ID
 if (!isset($_GET['id'])) {
-    die('Therapy ID not found');
+    redirectWithToast(
+        'manage_therapy.php',
+        'error',
+        'Therapy ID missing'
+    );
 }
 
-$id = $_GET['id'];
+$id = (int) $_GET['id'];
 
-// Fetch + Update handled in one function
-$therapy = updateTherapy($conn, $id);
+if (isset($_POST['updatetherapy'])) {
 
+    $isUpdate = updateTherapy($conn, $id);
+
+    if ($isUpdate) {
+        redirectWithToast('manage_therapy.php', 'success', 'Therapy updated successfully');
+    } else {
+        redirectWithToast('manage_therapy.php', 'error', 'Therapy update failed');
+    }
+}
+
+$therapy = getTherapyById($conn, $id);
 if (!$therapy) {
-    die('Therapy not found');
+    redirectWithToast('manage_therapy.php', 'error', 'Therapy not found');
 }
+
 ?>
 
 <!-- MAIN WRAPPER -->
@@ -62,7 +44,7 @@ if (!$therapy) {
         <div class="bg-white h-full rounded shadow p-6 sm:p-8">
 
             <!-- Page Header -->
-   <div class="flex justify-between items-center gap-4 p-3 border-b bg-white sticky top-0 z-20">
+            <div class="flex justify-between items-center gap-4 p-3 border-b bg-white sticky top-0 z-20">
                 <h2 class="text-lg sm:text-xl md:text-2xl font-bold">
                     Update Therapy
                 </h2>
@@ -74,7 +56,7 @@ if (!$therapy) {
             </div>
 
 
-           
+
 
             <!-- FORM -->
             <form method="POST" enctype="multipart/form-data" class=" space-y-5">

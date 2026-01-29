@@ -1,13 +1,29 @@
 <?php
+
 require_once('../helpers/auth_check.php');
+require_once('../helpers/toast.php'); // ✅ toast helper
 require_once('../../connect.php');
 require_once('../adminheader.php');
 require_once('../controllers/insert.php');
 
-$isInsert = insertFeature($conn);
-if ($isInsert) {
-    header("Location: manage_ourfeatures.php");
-    exit;
+// ✅ Run only on form submit
+if (isset($_POST['savefeature'])) {
+
+    $isInsert = insertFeature($conn);
+
+    if ($isInsert) {
+        redirectWithToast(
+            'manage_ourfeatures.php',
+            'success',
+            'Feature added successfully'
+        );
+    } else {
+        redirectWithToast(
+            'manage_ourfeatures.php',
+            'error',
+            'Feature insert failed'
+        );
+    }
 }
 ?>
 
@@ -29,24 +45,21 @@ if ($isInsert) {
                 </h1>
 
                 <a href="manage_ourfeatures.php"
-                   class="bg-gray-600 text-white text-sm sm:text-base px-4 py-2 rounded hover:bg-gray-700 transition">
+                    class="bg-gray-600 text-white text-sm sm:text-base px-4 py-2 rounded hover:bg-gray-700 transition">
                     ← Back
                 </a>
 
             </div>
 
             <!-- FORM -->
-            <form method="POST" enctype="multipart/form-data"
-                  class="space-y-6">
+            <form method="POST" enctype="multipart/form-data" class="space-y-6">
 
                 <!-- Feature Title -->
                 <div>
                     <label class="block mb-2 font-medium mt-4">
                         Feature Title
                     </label>
-                    <input type="text" name="title" required
-                           placeholder="Enter feature title"
-                           class="w-full border border-gray-300 rounded-lg p-3
+                    <input type="text" name="title" required placeholder="Enter feature title" class="w-full border border-gray-300 rounded-lg p-3
                                   focus:ring-2 focus:ring-[#7b61ff] focus:outline-none">
                 </div>
 
@@ -55,9 +68,7 @@ if ($isInsert) {
                     <label class="block mb-2 font-medium">
                         Description
                     </label>
-                    <textarea name="description" rows="4" required
-                              placeholder="Enter feature description"
-                              class="w-full border border-gray-300 rounded-lg p-3
+                    <textarea name="description" rows="4" required placeholder="Enter feature description" class="w-full border border-gray-300 rounded-lg p-3
                                      focus:ring-2 focus:ring-[#7b61ff] focus:outline-none"></textarea>
                 </div>
 
@@ -67,7 +78,7 @@ if ($isInsert) {
                         Feature Image
                     </label>
                     <input type="file" name="image" required
-                           class="w-full border border-gray-300 rounded-lg p-2 bg-white">
+                        class="w-full border border-gray-300 rounded-lg p-2 bg-white">
                 </div>
 
                 <!-- Status -->
@@ -75,8 +86,7 @@ if ($isInsert) {
                     <label class="block mb-2 font-medium">
                         Status
                     </label>
-                    <select name="status"
-                            class="w-full border border-gray-300 rounded-lg p-3
+                    <select name="status" class="w-full border border-gray-300 rounded-lg p-3
                                    focus:ring-2 focus:ring-[#7b61ff] focus:outline-none">
                         <option value="1">Active</option>
                         <option value="0">Inactive</option>
@@ -85,8 +95,7 @@ if ($isInsert) {
 
                 <!-- BUTTONS -->
                 <div class="pt-4 flex gap-3">
-                    <button type="submit" name="savefeature"
-                        class="bg-green-600 text-white px-6 py-3 rounded-lg
+                    <button type="submit" name="savefeature" class="bg-green-600 text-white px-6 py-3 rounded-lg
                                hover:bg-indigo-700 transition">
                         Save Feature
                     </button>

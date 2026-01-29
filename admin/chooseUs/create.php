@@ -1,16 +1,34 @@
 <?php
+
+
+
 require_once('../helpers/auth_check.php');
+require_once('../helpers/toast.php'); // ✅ toast helper
 require_once('../../connect.php');
 require_once('../adminheader.php');
 require_once('../controllers/insert.php');
 
-$isInsert = insertWhyChooseUs($conn);
-if ($isInsert) {
-    header("Location: manage_chooseUs.php");
-    exit;
-}
+// ✅ EXACTLY like therapy (button name = submit)
+if (isset($_POST['submit'])) {
 
+    $isInsert = insertWhyChooseUs($conn);
+
+    if ($isInsert) {
+        redirectWithToast(
+            'manage_chooseUs.php',
+            'success',
+            'Why Choose Us added successfully'
+        );
+    } else {
+        redirectWithToast(
+            'manage_chooseUs.php',
+            'error',
+            'Why Choose Us insert failed'
+        );
+    }
+}
 ?>
+
 
 <!-- MAIN WRAPPER -->
 <div class="flex min-h-[calc(100vh-106px)]">
@@ -49,7 +67,7 @@ if ($isInsert) {
                     <input type="file" name="icon" required class="w-full border border-gray-300 rounded-lg p-2">
                 </div>
 
-            
+
 
                 <!-- DESCRIPTION -->
                 <label class="block mb-2 font-medium">Description</label>

@@ -103,14 +103,30 @@ function updateTherapy($conn, $id)
 
         // Redirect if success
         if ($updateStmt->execute()) {
-            header("Location: manage_therapy.php");
-            exit;
+            return true;
+            // header("Location: manage_therapy.php");
+            // exit;
         }
     }
+    return false;
+}
 
-    // Return therapy data for form
+function getTherapyById($conn, $id)
+{
+    // Fetch therapy
+    $sql = "SELECT * FROM therapies WHERE id = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $therapy = $stmt->fetch(PDO::FETCH_ASSOC);
+    // print_r($therapy);
+
+    if (!$therapy) {
+        return false;
+    }
     return $therapy;
 }
+
 
 function updateChooseUs($conn, $id)
 {
@@ -261,7 +277,7 @@ function updateFeature($conn, $id)
             if (!empty($_FILES['image']['name'])) {
 
                 $imageName = time() . '_' . $_FILES['image']['name'];
-                $imageTmp  = $_FILES['image']['tmp_name'];
+                $imageTmp = $_FILES['image']['tmp_name'];
 
                 move_uploaded_file(
                     $imageTmp,

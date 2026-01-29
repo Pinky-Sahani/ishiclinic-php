@@ -1,15 +1,29 @@
 <?php
 
 require_once('../helpers/auth_check.php');
+require_once('../helpers/toast.php'); // ✅ toast helper
 require_once('../../connect.php');
-
 require_once('../adminheader.php');
 require_once('../controllers/insert.php');
 
-$isInsert = insertSlider($conn);
-if ($isInsert) {
-    header("Location: manage_slider.php");
-    exit;
+// ✅ Call function only on form submit
+if (isset($_POST['saveslider'])) {
+
+    $isInsert = insertSlider($conn);
+
+    if ($isInsert) {
+        redirectWithToast(
+            'manage_slider.php',
+            'success',
+            'Slider added successfully'
+        );
+    } else {
+        redirectWithToast(
+            'manage_slider.php',
+            'error',
+            'Slider insert failed'
+        );
+    }
 }
 ?>
 <!-- MAIN WRAPPER -->

@@ -1,15 +1,33 @@
 <?php
 require_once('../helpers/auth_check.php');
+require_once('../helpers/toast.php');
 require_once('../../connect.php');
 require_once('../adminheader.php');
 require_once('../controllers/insert.php');
 
 // Call function
-$isInsert = insertTherapy($conn);
-if ($isInsert) {
-    header("Location: manage_therapy.php");
-    exit;
+if (isset($_POST['savetherapy'])) {
+
+    $isInsert = insertTherapy($conn);
+
+    if ($isInsert) {
+        redirectWithToast(
+            'manage_therapy.php',
+            'success',
+            'Therapy added successfully'
+        );
+    } else {
+        redirectWithToast(
+            'manage_therapy.php',
+            'error',
+            'Therapy insert failed'
+        );
+    }
 }
+// if ($isInsert) {
+//     header("Location: manage_therapy.php");
+//     exit;
+// }
 ?>
 
 <!-- MAIN WRAPPER -->
@@ -23,8 +41,8 @@ if ($isInsert) {
         <div class="bg-white h-full rounded shadow p-8">
 
             <!-- Page Header -->
-             <div class="flex justify-between items-center gap-4 p-3 border-b bg-white sticky top-0 z-20">
-            
+            <div class="flex justify-between items-center gap-4 p-3 border-b bg-white sticky top-0 z-20">
+
                 <h1 class="text-lg sm:text-2xl md:text-2xl font-bold text-black">
                     Add Therapy
                 </h1>
@@ -73,7 +91,7 @@ if ($isInsert) {
                         Save Therapy
                     </button>
 
-                   
+
                 </div>
 
             </form>

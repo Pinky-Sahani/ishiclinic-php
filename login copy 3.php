@@ -40,7 +40,6 @@ if (isset($_POST['login'])) {
         'message' => 'Invalid Email or Password'
     ];
 }
-
 ?>
 
 

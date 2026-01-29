@@ -16,31 +16,5 @@ function fetchMasters($conn)
         return [];
     }
 }
-//  login fetch code 
-function fetchMasterLogin($conn, $email, $password)
-{
-    try {
-        $sql = "SELECT name, email, password, role
-                FROM user
-                WHERE email = :email AND role = 'master'";
-
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-        $stmt->execute();
-
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // Password verify
-        if ($user && password_verify($password, $user['password'])) {
-            return $user;   // ✅ login success
-        }
-
-        return false;       // ❌ invalid login
-
-    } catch (PDOException $e) {
-        return false;
-    }
-}
-
 
 ?>

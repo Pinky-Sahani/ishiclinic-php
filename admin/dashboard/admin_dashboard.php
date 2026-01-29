@@ -1,7 +1,5 @@
 <?php
-
 require_once('../helpers/auth_check.php');
-
 require_once('../../connect.php');
 require_once('../../user_interaction/controllers/fetch.php');
 $masters = fetchMasters($conn);

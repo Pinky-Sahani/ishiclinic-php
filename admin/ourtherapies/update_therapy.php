@@ -4,6 +4,38 @@ require_once('../../connect.php');
 require_once('../adminheader.php');
 require_once('../controllers/update.php');
 
+/* CHECK ID */
+// if (!isset($_GET['id'])) {
+//     redirectWithToast(
+//         'manage_therapy.php',
+//         'error',
+//         'Therapy ID missing'
+//     );
+// }
+
+// $id = (int) $_GET['id'];
+
+
+//     $therapy = updateTherapy($conn, $id);
+//     echo $id;
+//     print_r( $therapy);
+//     if ($therapy) {
+//         redirectWithToast(
+//             'manage_therapy.php',
+//             'success',
+//             'Therapy updated successfully'
+//         );
+//     } else {
+//         redirectWithToast(
+//             'manage_therapy.php',
+//             'error',
+//             'Therapy update failed'
+//         );
+//     }
+
+// print_r($therapy);
+
+
 // Check ID
 if (!isset($_GET['id'])) {
     die('Therapy ID not found');

@@ -1,3 +1,8 @@
+<?php
+// Include toast helper
+require_once __DIR__ . '/helpers/toast.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,7 +67,14 @@
                     menu.classList.add('hidden');
                 }
             });
+            // Prevent back button caching
+            window.addEventListener("pageshow", function (event) {
+                if (event.persisted) {
+                    window.location.reload();
+                }
+            });
         </script>
+
 
 
     </header>

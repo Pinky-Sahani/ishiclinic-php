@@ -144,7 +144,7 @@ function getTherapyById($conn, $id)
 }
 
 
-function updateChooseUs($conn, $id)
+function updateChooseUsold($conn, $id)
 {
     try {
 
@@ -197,6 +197,65 @@ function updateChooseUs($conn, $id)
         return false;
     }
 }
+function updateChooseUs($conn, $id)
+{
+    try {
+        // FETCH RECORD
+        $sql = "SELECT * FROM chooseus WHERE id = :id";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $choose = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$choose) {
+            return false;
+        }
+
+        // UPDATE LOGIC
+        if (isset($_POST['updatechoose'])) {
+
+            $title = $_POST['title'];
+            $description = $_POST['description'];
+            $status = $_POST['status'];
+
+            // ICON UPLOAD HANDLING
+            if (!empty($_FILES['icon']['name'])) {
+                $iconName = time() . '_' . $_FILES['icon']['name'];
+                $tmpName = $_FILES['icon']['tmp_name'];
+                move_uploaded_file($tmpName, "../uploads/icon/" . $iconName);
+            } else {
+                $iconName = $choose['icon']; // keep old icon
+            }
+
+            $updateSql = "UPDATE chooseus SET
+                            title = :title,
+                            icon = :icon,
+                            description = :description,
+                            status = :status
+                          WHERE id = :id";
+
+            $updateStmt = $conn->prepare($updateSql);
+            $updateStmt->bindParam(':title', $title);
+            $updateStmt->bindParam(':icon', $iconName);
+            $updateStmt->bindParam(':description', $description);
+            $updateStmt->bindParam(':status', $status);
+            $updateStmt->bindParam(':id', $id);
+
+            if ($updateStmt->execute()) {
+                return true;
+            }
+        }
+
+        return false;
+
+    } catch (PDOException $e) {
+        echo "ChooseUs Update Error: " . $e->getMessage();
+        return false;
+    }
+}
+
+
+
 
 function getChooseUsById($conn, $id)
 {

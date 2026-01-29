@@ -8,7 +8,7 @@ if (isset($_POST['login'])) {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
 
-    $sql = "SELECT name, email, password, role
+    $sql = "SELECT id, name, email, password, role
             FROM user
             WHERE email = :email AND role = 'master'";
 
@@ -20,6 +20,7 @@ if (isset($_POST['login'])) {
 
     if ($user && password_verify($password, $user['password'])) {
 
+        $_SESSION['id'] = $user['id'];
         $_SESSION['name'] = $user['name'];
         $_SESSION['email'] = $user['email'];
         $_SESSION['role'] = $user['role'];

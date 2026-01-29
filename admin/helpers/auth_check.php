@@ -10,7 +10,13 @@ header("Pragma: no-cache");
 header("Expires: Thu, 01 Jan 1970 00:00:00 GMT");
 
 /* 🔐 Auth check */
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'master') {
+if (!isset($_SESSION['id'])) {
     header("Location: /ishiclinic/login.php");
     exit;
 }
+
+
+// if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'master') {
+//     header("Location: /ishiclinic/login.php");
+//     exit;
+// }

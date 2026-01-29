@@ -73,7 +73,7 @@ if (!$choose) {
             </div>
 
             <!-- FORM -->
-            <form method="POST" enctype="multipart/form-data" class=" mt-6 space-y-4">
+            <form method="POST" class=" mt-6 space-y-4">
 
                 <!-- TITLE -->
                 <div>
@@ -82,16 +82,18 @@ if (!$choose) {
                         required>
                 </div>
 
-
-                <!-- image   -->
-                <div>
+                <!-- ICON -->
+                  <div>
                     <label class="block mb-1 font-medium">Image</label>
-                    <input type="file" name="icon" class="w-full border rounded px-3 py-2">
-                    <img src="../uploads/icon/<?= $choose['icon']; ?>" class="mt-3 w-32 border rounded">
+                    <input type="file" name="image" class="w-full border rounded px-3 py-2">
+
+                    <img src="../uploads/sliders/<?= $choose['icon']; ?>" class="mt-3 w-32 border rounded">
                 </div>
-
-
-
+                <!-- <div>
+                    <label class="block font-medium mb-1">Icon</label>
+                    <input type="text" name="icon" value="<?= $choose['icon']; ?>" class="w-full border p-2 rounded"
+                        required>
+                </div> -->
 
                 <!-- DESCRIPTION -->
                 <div>

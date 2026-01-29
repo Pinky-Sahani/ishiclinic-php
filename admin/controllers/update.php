@@ -48,14 +48,30 @@ function updateSlider($conn, $id)
 
         // Redirect if success
         if ($updateStmt->execute()) {
-            header("Location: manage_slider.php");
-            exit;
+            return true;
+            // header("Location: manage_slider.php");
+            // exit;
         }
     }
+    return false;
+}
 
-    // Return slider data for form
+function getSliderById($conn, $id)
+{
+    // Fetch slider
+    $sql = "SELECT * FROM sliders WHERE id = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $slider = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$slider) {
+        return false;
+    }
     return $slider;
 }
+
+
 
 function updateTherapy($conn, $id)
 {
@@ -231,18 +247,33 @@ function updateTeam($conn, $id)
             $updateStmt->bindParam(':id', $id);
 
             if ($updateStmt->execute()) {
-                header("Location: manage_ourteam.php");
-                exit;
+                return true;
+                // header("Location: manage_ourteam.php");
+                // exit;
             }
         }
 
         /* RETURN DATA FOR FORM */
-        return $team;
+        return false;
 
     } catch (PDOException $e) {
         echo "Team Update Error: " . $e->getMessage();
         return false;
     }
+}
+function getTeamById($conn, $id)
+{
+    // Fetch team
+    $sql = "SELECT * FROM team WHERE id = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $team = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$team) {
+        return false;
+    }
+    return $team;
 }
 
 

@@ -5,19 +5,46 @@ require_once('../../connect.php');
 require_once('../adminheader.php');
 require_once('../controllers/update.php');
 
-// Check ID
+/* CHECK ID */
 if (!isset($_GET['id'])) {
-    die('Team ID not found');
+    redirectWithToast(
+        'manage_ourteam.php',
+        'error',
+        'Team ID missing'
+    );
 }
 
-$id = $_GET['id'];
+$id = (int) $_GET['id'];
 
-// Fetch + Update handled in one function
-$team = updateTeam($conn, $id);
+if (isset($_POST['updateteam'])) {
 
+    $isUpdate = updateTeam($conn, $id);
+
+    if ($isUpdate) {
+        redirectWithToast('manage_ourteam.php', 'success', 'Team updated successfully');
+    } else {
+        redirectWithToast('manage_ourteam.php', 'error', 'Team update failed');
+    }
+}
+
+$team = getTeamById($conn, $id);
 if (!$team) {
-    die('Team member not found');
+    redirectWithToast('manage_ourteam.php', 'error', 'Team not found');
 }
+
+// // Check ID
+// if (!isset($_GET['id'])) {
+//     die('Team ID not found');
+// }
+
+// $id = $_GET['id'];
+
+// // Fetch + Update handled in one function
+// $team = updateTeam($conn, $id);
+
+// if (!$team) {
+//     die('Team member not found');
+// }
 ?>
 
 <!-- MAIN WRAPPER -->

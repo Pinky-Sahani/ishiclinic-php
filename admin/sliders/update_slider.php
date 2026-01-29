@@ -4,19 +4,33 @@ require_once('../../connect.php');
 require_once('../adminheader.php');
 require_once('../controllers/update.php');
 
-// Check ID
+/* CHECK ID */
 if (!isset($_GET['id'])) {
-    die('Slider ID not found');
+    redirectWithToast(
+        'manage_slider.php',
+        'error',
+        'Slider ID missing'
+    );
 }
 
-$id = $_GET['id'];
+$id = (int) $_GET['id'];
 
-// Fetch + Update handled in one function
-$slider = updateSlider($conn, $id);
+if (isset($_POST['updateslider'])) {
 
+    $isUpdate = updateSlider($conn, $id);
+
+    if ($isUpdate) {
+        redirectWithToast('manage_slider.php', 'success', 'Slider updated successfully');
+    } else {
+        redirectWithToast('manage_slider.php', 'error', 'Slider update failed');
+    }
+}
+
+$slider = getSliderById($conn, $id);
 if (!$slider) {
-    die('Slider not found');
+    redirectWithToast('manage_slider.php', 'error', 'Slider not found');
 }
+
 ?>
 
 <!-- MAIN WRAPPER -->

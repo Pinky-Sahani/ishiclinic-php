@@ -4,16 +4,43 @@ require_once('../../connect.php');
 require_once('../adminheader.php');
 require_once('../controllers/update.php');
 
+// if (!isset($_GET['id'])) {
+//     die('ID not found');
+// }
+
+// $id = $_GET['id'];
+
+// $choose = updateChooseUs($conn, $id);
+
+// if (!$choose) {
+//     die('Record not found');
+// }
+
+/* CHECK ID */
 if (!isset($_GET['id'])) {
-    die('ID not found');
+    redirectWithToast(
+        'manage_chooseUs.php',
+        'error',
+        'Choose Us ID missing'
+    );
 }
 
-$id = $_GET['id'];
+$id = (int) $_GET['id'];
 
-$choose = updateChooseUs($conn, $id);
+if (isset($_POST['updatechoose'])) {
 
+    $isUpdate = updateChooseUs($conn, $id);
+
+    if ($isUpdate) {
+        redirectWithToast('manage_chooseUs.php', 'success', 'Choose Us updated successfully');
+    } else {
+        redirectWithToast('manage_chooseUs.php', 'error', 'Choose Us update failed');
+    }
+}
+
+$choose = getChooseUsById($conn, $id);
 if (!$choose) {
-    die('Record not found');
+    redirectWithToast('manage_chooseUs.php', 'error', 'Choose Us not found');
 }
 
 ?>

@@ -4,19 +4,48 @@ require_once('../adminheader.php');
 require_once('../../connect.php');
 require_once('../controllers/update.php');
 
+
+
 /* CHECK ID */
 if (!isset($_GET['id'])) {
-    die('Feature ID not found');
+    redirectWithToast(
+        'manage_ourfeatures.php',
+        'error',
+        'Feature ID missing'
+    );
 }
 
-$id = $_GET['id'];
+$id = (int) $_GET['id'];
 
-/* FETCH + UPDATE */
-$feature = updateFeature($conn, $id);
+if (isset($_POST['updatefeature'])) {
 
+    $isUpdate = updateFeature($conn, $id);
+
+    if ($isUpdate) {
+        redirectWithToast('manage_ourfeatures.php', 'success', 'Feature updated successfully');
+    } else {
+        redirectWithToast('manage_ourfeatures.php', 'error', 'Feature update failed');
+    }
+}
+
+$feature = getFeatureById($conn, $id);
 if (!$feature) {
-    die('Feature not found');
+    redirectWithToast('manage_ourfeatures.php', 'error', 'Feature not found');
 }
+
+// /* CHECK ID */
+// if (!isset($_GET['id'])) {
+//     die('Feature ID not found');
+// }
+
+// $id = $_GET['id'];
+
+// /* FETCH + UPDATE */
+// $feature = updateFeature($conn, $id);
+
+// if (!$feature) {
+//     die('Feature not found');
+// }
 ?>
 
 <!-- MAIN WRAPPER -->

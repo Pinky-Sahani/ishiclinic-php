@@ -183,18 +183,34 @@ function updateChooseUs($conn, $id)
             $updateStmt->bindParam(':id', $id, );
 
             if ($updateStmt->execute()) {
-                header("Location: manage_chooseUs.php");
-                exit;
+                return true;
+                // header("Location: manage_chooseUs.php");
+                // exit;
             }
         }
 
         /* RETURN DATA FOR FORM */
-        return $choose;
+        return false;
 
     } catch (PDOException $e) {
         echo "ChooseUs Update Error: " . $e->getMessage();
         return false;
     }
+}
+
+function getChooseUsById($conn, $id)
+{
+    // Fetch chooseus
+    $sql = "SELECT * FROM chooseus WHERE id = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $choose = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$choose) {
+        return false;
+    }
+    return $choose;
 }
 
 
@@ -331,18 +347,34 @@ function updateFeature($conn, $id)
             $updateStmt->bindParam(':id', $id);
 
             if ($updateStmt->execute()) {
-                header("Location: manage_ourfeatures.php");
-                exit;
+                return true;
+                // header("Location: manage_ourfeatures.php");
+                // exit;
             }
         }
 
         /* RETURN DATA FOR FORM */
-        return $feature;
+        return false;
 
     } catch (PDOException $e) {
         echo "Feature Update Error: " . $e->getMessage();
         return false;
     }
+}
+
+function getFeatureById($conn, $id)
+{
+    // Fetch feature
+    $sql = "SELECT * FROM features WHERE id = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $feature = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$feature) {
+        return false;
+    }
+    return $feature;
 }
 
 

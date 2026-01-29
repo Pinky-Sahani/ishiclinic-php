@@ -11,8 +11,9 @@ function deleteSlider($conn, $id)
     $stmt->bindParam(':id', $id);
 
     if ($stmt->execute()) {
-        header("Location: manage_slider.php");
-        exit;
+        return true;
+        // header("Location: manage_slider.php");
+        // exit;
     }
 
     return false;
@@ -31,8 +32,9 @@ function deleteTherapy($conn, $id)
     $stmt->bindParam(':id', $id);
 
     if ($stmt->execute()) {
-        header("Location: manage_therapy.php");
-        exit;
+        return true;
+        // header("Location: manage_therapy.php");
+        // exit;
     }
 
     return false;
@@ -50,8 +52,9 @@ function deleteChooseUs($conn, $id)
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
     if ($stmt->execute()) {
-        header("Location: manage_chooseUs.php");
-        exit;
+        return true;
+        // header("Location: manage_chooseUs.php");
+        // exit;
     }
 
     return false;
@@ -70,8 +73,9 @@ function deleteTeam($conn, $id)
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
     if ($stmt->execute()) {
-        header("Location: manage_ourteam.php");
-        exit;
+        return true;
+        // header("Location: manage_ourteam.php");
+        // exit;
     }
 
     return false;
@@ -91,8 +95,9 @@ function deleteFeature($conn, $id)
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
     if ($stmt->execute()) {
-        header("Location: manage_ourfeatures.php");
-        exit;
+        return true;
+        // header("Location: manage_ourfeatures.php");
+        // exit;
     }
 
     return false;
@@ -106,8 +111,9 @@ function deleteContactMessage($conn, $id)
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
-            header("Location: manage_contactUs.php");
-            exit;
+            return true;
+            // header("Location: manage_contactUs.php");
+            // exit;
         }
     } catch (PDOException $e) {
         die("Unable to delete contact message");

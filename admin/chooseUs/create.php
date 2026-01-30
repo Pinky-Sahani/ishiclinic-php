@@ -1,7 +1,4 @@
 <?php
-
-
-
 require_once('../helpers/auth_check.php');
 require_once('../helpers/toast.php'); // ✅ toast helper
 require_once('../../connect.php');

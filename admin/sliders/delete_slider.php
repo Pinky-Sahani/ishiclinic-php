@@ -4,9 +4,6 @@ require_once('../helpers/toast.php');
 require_once('../../connect.php');
 require_once('../controllers/delete.php');
 
-
-
-
 if (!isset($_GET['id'])) {
     redirectWithToast('manage_slider.php', 'error', 'ID is missing');
 }

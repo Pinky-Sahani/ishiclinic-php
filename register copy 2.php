@@ -1,9 +1,7 @@
 <?php
 require_once('connect.php');
 require_once('./user_interaction/controllers/insert.php');
-require_once __DIR__ . '/admin/helpers/toast.php';
-
-// require_once('admin/helpers/toast.php'); // ✅ LOGIC helper
+// ❌ DO NOT load toast here
 
 if (isset($_POST['register'])) {
 
@@ -34,6 +32,10 @@ if (isset($_POST['register'])) {
 </head>
 
 <body class="bg-gray-100 min-h-screen flex items-center justify-center px-4">
+
+    <!-- ✅ Toast UI loaded ONLY here -->
+    <?php require_once('admin/helpers/toast.php'); ?>
+
     <form method="POST" class="bg-white w-full max-w-sm sm:max-w-md md:max-w-lg
                  p-6 sm:p-8 rounded-lg shadow-lg">
 
@@ -41,19 +43,29 @@ if (isset($_POST['register'])) {
             Register
         </h2>
 
-        <input type="text" name="name" required placeholder="Name" class="w-full mb-4 p-3 border rounded">
-        <input type="email" name="email" required placeholder="Email" class="w-full mb-4 p-3 border rounded">
-        <input type="hidden" name="role" value="master">
-        <input type="password" name="password" required placeholder="Password" class="w-full mb-4 p-3 border rounded">
+        <input type="text" name="name" required placeholder="Name" class="w-full mb-4 p-2 sm:p-3 border rounded
+                   focus:outline-none focus:ring-2 focus:ring-blue-500">
 
-        <button name="register" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded">
+        <input type="email" name="email" required placeholder="Email" class="w-full mb-4 p-2 sm:p-3 border rounded
+                   focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+        <input type="hidden" name="role" value="master">
+
+        <input type="password" name="password" required placeholder="Password" class="w-full mb-4 p-2 sm:p-3 border rounded
+                   focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+        <button name="register" class="w-full bg-blue-600 hover:bg-blue-700
+                   text-white py-2 sm:py-3 rounded transition">
             Register
         </button>
 
-        <p class="mt-4 text-center text-sm">
+        <p class="mt-4 text-sm sm:text-base text-center">
             Already have account?
-            <a href="login.php" class="text-blue-600 hover:underline">Login</a>
+            <a href="login.php" class="text-blue-600 hover:underline">
+                Login
+            </a>
         </p>
+
     </form>
 
 </body>

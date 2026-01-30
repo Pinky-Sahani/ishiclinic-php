@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once('connect.php');
-require_once __DIR__ . '/admin/helpers/toast.php';
 
 
 if (isset($_POST['login'])) {

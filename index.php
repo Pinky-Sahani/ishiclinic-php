@@ -60,14 +60,34 @@ if (isset($_POST['send_message'])) {
                         <?= $slide['description_text']; ?>
                     </p>
 
-                    <div class="flex justify-center gap-4 mt-6">
+                    <!-- button -->
+                    <div class="flex flex-col sm:flex-row justify-center gap-4 mt-6 px-4">
+
+                        <a href="#" class="bg-purple-400 text-white px-6 py-3 rounded-full 
+              text-center w-full sm:w-auto
+              hover:bg-purple-500 transition">
+                            Book Appointment
+                        </a>
+
+                        <a href="#" class="bg-purple-400 text-white px-6 py-3 rounded-full 
+              text-center w-full sm:w-auto
+              hover:bg-purple-500 transition">
+                            Learn More
+                        </a>
+
+                    </div>
+
+
+
+                    <!-- button    -->
+                    <!-- <div class="flex justify-center gap-4 mt-6">
                         <a href="#" class="bg-purple-400 px-6 py-3 rounded-full">
                             Book Appointment
                         </a>
                         <a href="#" class="bg-purple-400 px-6 py-3 rounded-full">
                             Learn More
                         </a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -300,7 +320,7 @@ if (isset($_POST['send_message'])) {
 <!-- Our Features section starts here  -->
 
 
- <!-- contact us section starts here  -->
+<!-- contact us section starts here  -->
 <section class="py-16 bg-gray-100">
     <div class="container mx-auto px-6 lg:px-20">
         <!-- Heading -->
@@ -315,7 +335,7 @@ if (isset($_POST['send_message'])) {
                     <!-- Name -->
                     <label class="block mb-2 font-medium">Name</label>
                     <input type="text" name="name" id="name" placeholder="Your Name"
-                        class="w-full px-4 py-3 mb-4 border rounded-md"  value="<?= $_POST['name'] ?? '' ?>" />
+                        class="w-full px-4 py-3 mb-4 border rounded-md" value="<?= $_POST['name'] ?? '' ?>" />
 
                     <!-- Email -->
                     <label class="block mb-2 font-medium">Email</label>
@@ -382,7 +402,7 @@ if (isset($_POST['send_message'])) {
             </div>
         </div>
 
-    
+
         <!-- SUCCESS MESSAGE -->
         <?php if (isset($_GET['success'])): ?>
             <div class="bg-green-100 text-green-700 p-4 mb-6 rounded">
